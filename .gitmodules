@@ -1,0 +1,9 @@
+[submodule "WBSF"]
+	path = WBSF
+	url = https://github.com/RNCan/WBSF.git
+[submodule "WBSFModels"]
+	path = WBSFModels
+	url = https://github.com/RNCan/WBSFModels.git
+[submodule "WBSFTools"]
+	path = WBSFTools
+	url = https://github.com/RNCan/WBSFTools.git
