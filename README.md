@@ -40,3 +40,8 @@ cmake --preset vs2022"
 ```
 cmake --build --preset vs2022
 ```
+
+# Build Artifacts
+Everything built using this method will go under the ./build/vs2022 folder
+
+For example, the WeatherGenerator executable will be built into ./build/vs2022/WBSFTools/WeatherGenerator/[Debug,Release].  CMake will automatically copy all needed dlls into the output build folder, except the Models DLLs.
