@@ -1,0 +1,15 @@
+{
+  "name": "wbsfprojects",
+  "version": "1.0.0",
+  "builtin-baseline": "39e7b2243343cb39d153a759239dc6a9dfa1f705",
+  "dependencies": [
+    {
+      "name": "boost",
+      "version>=": "1.89.0"
+    },
+    {
+      "name": "gdal",
+      "version>=": "3.11.3"
+    }
+  ]
+}

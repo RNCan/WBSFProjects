@@ -1,1 +1,3 @@
 /WBSFInstall/models/*.dll
+/.vs
+/build
