@@ -8,12 +8,14 @@ git clone --recurse-submodules https://github.com/RNCan/WBSFProjects.git
 ```
 
 2. Open a terminal into the cloned directory and initialize the vcpkg toolchain using commands : (this is required only once after cloning the repository)
+On Windows:
 ```
-.\vcpkg\bootstrap-vcpkg.bat (windows)
+.\vcpkg\bootstrap-vcpkg.bat
 ```
 OR
+On Linux :
 ```
-./vcpkg/bootstrap-vcpkg.sh (linux)
+./vcpkg/bootstrap-vcpkg.sh
 ```
 
 ## Configuring with Visual Studio 2022
