@@ -29,7 +29,7 @@ On Linux :
 ## Configuring with CMake (Windows & Linux)
 1. In the terminal, execute command 
 ```
-cmake --preset vs2022"
+cmake --preset vs2022
 ```
 
 ## Building with Visual Studio 2022
