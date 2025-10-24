@@ -27,7 +27,12 @@ On Linux :
 4. When the "CMake generation finished" shows in the output window, the final VS2022 solution files have been generated.  Open the global solution located in "./build/vs2022/WBSFProjects.sln".
 
 ## Configuring with CMake (Windows & Linux)
-1. In the terminal, execute command 
+1. (Linux) Make sure the following packages are installed using command (on Ubuntu))
+```
+sudo apt-get install bison flex autoconf libtool
+```
+
+2. In the terminal, execute command 
 ```
 cmake --preset vs2022
 ```
