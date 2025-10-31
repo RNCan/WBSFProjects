@@ -13,6 +13,11 @@ IF(MSVC)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc") 
 ENDIF(MSVC)
 
+# Add -fPIC on Linux/UNIX
+if(UNIX AND NOT APPLE)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
+
 # Add subdirectories (order matters: core first)
 add_subdirectory(WBSF)
 add_subdirectory(WBSFModels)
