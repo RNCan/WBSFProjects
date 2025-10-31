@@ -60,12 +60,20 @@
       "version>=": "1.89.0"
     },
     {
+      "name": "boost-dynamic-bitset",
+      "version>=": "1.89.0"
+    },
+    {
       "name": "gdal",
       "version>=": "3.11.3"
     },
     {
       "name": "gtest",
       "version>=": "1.17.0"
+    },
+    {
+      "name": "gsl",
+      "version>=": "2.8#2"
     }
   ]
 }
