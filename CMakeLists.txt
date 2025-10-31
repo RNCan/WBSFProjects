@@ -7,6 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_definitions(-DMUPARSER_STATIC)
 
+IF(MSVC)
+    # Add /EHsc to the C++ compiler flags
+    # It's important to append it to existing flags, not overwrite them.
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc") 
+ENDIF(MSVC)
+
 # Add subdirectories (order matters: core first)
 add_subdirectory(WBSF)
 add_subdirectory(WBSFModels)

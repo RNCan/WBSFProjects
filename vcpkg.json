@@ -64,6 +64,14 @@
       "version>=": "1.89.0"
     },
     {
+      "name": "boost-exception",
+      "version>=": "1.89.0"
+    },
+    {
+      "name": "boost-throw-exception",
+      "version>=": "1.89.0"
+    },
+    {
       "name": "gdal",
       "version>=": "3.11.3"
     },
