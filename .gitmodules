@@ -7,6 +7,9 @@
 [submodule "WBSFTools"]
 	path = WBSFTools
 	url = https://github.com/RNCan/WBSFTools.git
+[submodule "WBSFInstall"]
+	path = WBSFInstall
+	url = https://github.com/RNCan/WBSFInstall.git
 [submodule "vcpkg"]
 	path = vcpkg
 	url = https://github.com/microsoft/vcpkg.git
