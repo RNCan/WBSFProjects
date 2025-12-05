@@ -1,15 +1,19 @@
 [submodule "WBSF"]
 	path = WBSF
 	url = https://github.com/RNCan/WBSF.git
+	branch = main
 [submodule "WBSFModels"]
 	path = WBSFModels
 	url = https://github.com/RNCan/WBSFModels.git
+	branch = main
 [submodule "WBSFTools"]
 	path = WBSFTools
 	url = https://github.com/RNCan/WBSFTools.git
+	branch = main
 [submodule "WBSFInstall"]
 	path = WBSFInstall
 	url = https://github.com/RNCan/WBSFInstall.git
+	branch = main
 [submodule "vcpkg"]
 	path = vcpkg
 	url = https://github.com/microsoft/vcpkg.git
