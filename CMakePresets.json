@@ -7,8 +7,7 @@
   "configurePresets": [
     {
       "name": "base-preset",
-      "displayName": "base-preset",      
-      "architecture": "x64",      
+      "displayName": "base-preset",            
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",        
         "CMAKE_CXX_FLAGS": "-DBUILDING_FROM_VCPKG=1",
@@ -18,8 +17,9 @@
     {
       "name": "vs2022",
       "inherits": "base-preset",
+      "architecture": "x64",
       "displayName": "Visual Studio 2022 (vcpkg + x64)",
-      "generator": "Visual Studio 17 2022",      
+      "generator": "Visual Studio 17 2022",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "VCPKG_FEATURE_FLAGS": "manifests"
