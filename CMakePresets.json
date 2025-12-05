@@ -27,15 +27,17 @@
     },
     {
       "name": "linux-release",
+      "inherits": "base-preset",
       "generator": "Unix Makefiles",
       "displayName": "VCPKG Build Linux",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"        
+        "CMAKE_BUILD_TYPE": "Release"
       }
     },
     {
       "name": "linux-debug",
+      "inherits": "base-preset",
       "generator": "Unix Makefiles",
       "displayName": "VCPKG Build Linux",
       "binaryDir": "${sourceDir}/build/${presetName}",
