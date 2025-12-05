@@ -6,15 +6,23 @@
   },
   "configurePresets": [
     {
+      "name": "base-preset",
+      "displayName": "base-preset",      
+      "architecture": "x64",      
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",        
+        "CMAKE_CXX_FLAGS": "-DBUILDING_FROM_VCPKG=1",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/package"
+      }
+    },
+    {
       "name": "vs2022",
+      "inherits": "base-preset",
       "displayName": "Visual Studio 2022 (vcpkg + x64)",
-      "generator": "Visual Studio 17 2022",
-      "architecture": "x64",
+      "generator": "Visual Studio 17 2022",      
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
-        "VCPKG_FEATURE_FLAGS": "manifests",
-        "CMAKE_CXX_FLAGS": "-DBUILDING_FROM_VCPKG=1"
+        "VCPKG_FEATURE_FLAGS": "manifests"
       }
     },
     {
@@ -23,9 +31,7 @@
       "displayName": "VCPKG Build Linux",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
-        "CMAKE_CXX_FLAGS": "-DBUILDING_FROM_VCPKG=1"
+        "CMAKE_BUILD_TYPE": "Release"        
       }
     },
     {
@@ -34,9 +40,7 @@
       "displayName": "VCPKG Build Linux",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
-        "CMAKE_CXX_FLAGS": "-DBUILDING_FROM_VCPKG=1"
+        "CMAKE_BUILD_TYPE": "Debug"
       }
     }
   ],
