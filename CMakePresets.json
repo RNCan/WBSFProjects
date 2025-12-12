@@ -50,6 +50,14 @@
     {
       "name": "vs2022",
       "configurePreset": "vs2022"
+    },
+    {
+      "name": "linux-debug",
+      "configurePreset": "linux-debug"
+    },
+    {
+      "name": "linux-release",
+      "configurePreset": "linux-release"
     }
   ]
 }
