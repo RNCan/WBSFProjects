@@ -1,7 +1,7 @@
 # WBSFProjects
 A repository that contains all WBSF related repos for a single build
 
-# Setup
+## Setup
 1. Clone the repository and its submodules using command : 
 ```
 git clone --recurse-submodules https://github.com/RNCan/WBSFProjects.git
@@ -19,7 +19,7 @@ On Linux :
 ```
 ./vcpkg/bootstrap-vcpkg.sh
 ```
-
+# Configuring
 ## Configuring with Visual Studio 2022
 1. If using Visual Studio, make sure VS2022 is configured to use vcpkg manifests as explained here : https://learn.microsoft.com/en-us/vcpkg/consume/manifest-mode?tabs=msbuild%2Cbuild-visual-studio
 2. Launch Visual Studio, then click the "Open a local folder" button, and select the location where the WBSFProjects repo was cloned
@@ -47,6 +47,7 @@ On Linux - release configuration:
 cmake --preset linux-release
 ```
 
+# Building
 ## Building with Visual Studio 2022
 Open the CMakePredefinedTargets folder, and then build the ALL_BUILD target
 
@@ -66,17 +67,18 @@ On Linux - release configuration:
 cmake --build --preset linux-release
 ```
 
-# Build Artifacts
+## Build Artifacts
 Everything built using this method will go under the ./build/preset-name folder (vs2022, linux-debug or linux-release)
 
 For example, the WeatherGenerator executable will be built into ./build/vs2022/WBSFTools/WeatherGenerator/[Debug,Release].  CMake will automatically copy all needed dlls into the output build folder, except the Models DLLs.
 
-# Installing files for deployment
+## Installing files for deployment
 When build is finished, the BioSIM_API files must be installed so that they can be consumed by the C++ grpc processes in the WebAPI.
-## Installing using Visual Studio 2022
+### Installing using Visual Studio 2022
 Open the CMakePredefinedTargets folder, and then build the INSTALL target
-## Installing using CMake
+### Installing using CMake
 In the terminal, execute one of the following commands:
+
 On Windows:
 ```
 cmake --build --preset vs2022 --target INSTALL
