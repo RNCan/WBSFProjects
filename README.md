@@ -32,21 +32,63 @@ On Linux :
 sudo apt-get install bison flex autoconf libtool
 ```
 
-2. In the terminal, execute command 
+2. In the terminal, execute one of the following commands:
+
+On Windows:
 ```
 cmake --preset vs2022
 ```
+On Linux - debug configuration:
+```
+cmake --preset linux-debug
+```
+On Linux - release configuration:
+```
+cmake --preset linux-release
+```
 
 ## Building with Visual Studio 2022
-1. Open the CMakePredefinedTargets folder, and then build the ALL_BUILD target
+Open the CMakePredefinedTargets folder, and then build the ALL_BUILD target
 
 ## Building with CMake (Windows & Linux)
-1. In the terminal, execute command 
+In the terminal, execute one of the following commands:
+
+On Windows:
 ```
 cmake --build --preset vs2022
 ```
+On Linux - debug configuration:
+```
+cmake --build --preset linux-debug
+```
+On Linux - release configuration:
+```
+cmake --build --preset linux-release
+```
 
 # Build Artifacts
-Everything built using this method will go under the ./build/vs2022 folder
+Everything built using this method will go under the ./build/preset-name folder (vs2022, linux-debug or linux-release)
 
 For example, the WeatherGenerator executable will be built into ./build/vs2022/WBSFTools/WeatherGenerator/[Debug,Release].  CMake will automatically copy all needed dlls into the output build folder, except the Models DLLs.
+
+# Installing files for deployment
+When build is finished, the BioSIM_API files must be installed so that they can be consumed by the C++ grpc processes in the WebAPI.
+## Installing using Visual Studio 2022
+Open the CMakePredefinedTargets folder, and then build the INSTALL target
+## Installing using CMake
+In the terminal, execute one of the following commands:
+On Windows:
+```
+cmake --build --preset vs2022 --target INSTALL
+```
+On Linux - debug configuration:
+```
+cmake --build --preset linux-debug --target INSTALL
+```
+On Linux - release configuration:
+```
+cmake --build --preset linux-release --target INSTALL
+```
+Those commands will install all needed files for the SioSIM_API DLL to run including the model .mdl and .dll files into the ./package directory.
+
+At this point, the BioSIM_API DLL is ready to be used for building the WebAPI project.  Please refer to its README file for further instructions.
