@@ -28,7 +28,9 @@
 	{
       "name": "vs2022-ci",
       "inherits": "vs2022",
-      "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",        
+	  "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }      
     },
     {
       "name": "linux-release",
@@ -56,7 +58,7 @@
       "name": "vs2022",
       "configurePreset": "vs2022"
     },
-	    {
+	{
       "name": "vs2022-ci",
       "configurePreset": "vs2022-ci"
     },
