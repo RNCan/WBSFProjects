@@ -25,6 +25,11 @@
         "VCPKG_FEATURE_FLAGS": "manifests"
       }
     },
+	{
+      "name": "vs2022-ci",
+      "inherits": "vs2022",
+      "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",        
+    },
     {
       "name": "linux-release",
       "inherits": "base-preset",
@@ -50,6 +55,10 @@
     {
       "name": "vs2022",
       "configurePreset": "vs2022"
+    },
+	    {
+      "name": "vs2022-ci",
+      "configurePreset": "vs2022-ci"
     },
     {
       "name": "linux-debug",
