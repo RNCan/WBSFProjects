@@ -24,7 +24,7 @@ jobs:
 
       # Install a known-good CMake
       - name: Set up CMake
-        uses: lukka/get-cmake@v4
+        uses: lukka/get-cmake@latest
         
       # vcpkg with manifest mode + caching
       - name: Set up vcpkg
@@ -33,7 +33,7 @@ jobs:
           vcpkgJsonGlob: '**/vcpkg.json'
         
       - name: Run CMake consuming CMakePreset.json and run vcpkg to build packages
-        uses: lukka/run-cmake@v10
+        uses: lukka/run-cmake@v10.8
         with:
           configurePreset: ${{ matrix.preset }}
 
