@@ -1,0 +1,39 @@
+name: CMake Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            preset: vs2022
+#          - os: ubuntu-latest
+#            preset: linux-release
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # vcpkg with manifest mode + caching
+      - name: Set up vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgJsonGlob: '**/vcpkg.json'
+
+      # Install a known-good CMake
+      - name: Set up CMake
+        uses: lukka/get-cmake@v3
+
+      # Configure
+      - name: Configure
+        run: cmake --preset=${{ matrix.preset }}
+
+      # Build
+      - name: Build
+        run: cmake --build --preset=${{ matrix.preset }}
