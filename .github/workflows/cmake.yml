@@ -25,11 +25,7 @@ jobs:
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgJsonGlob: '**/vcpkg.json'
-
-      # Install a known-good CMake
-      - name: Set up CMake
-        uses: lukka/get-cmake@v3
-
+      
       # Configure
       - name: Configure
         run: cmake --preset=${{ matrix.preset }}
