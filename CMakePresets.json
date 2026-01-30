@@ -36,7 +36,7 @@
       "name": "linux-release",
       "inherits": "base-preset",
       "generator": "Unix Makefiles",
-      "displayName": "VCPKG Build Linux",
+      "displayName": "VCPKG Build Linux (release)",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release"
@@ -46,7 +46,7 @@
       "name": "linux-debug",
       "inherits": "base-preset",
       "generator": "Unix Makefiles",
-      "displayName": "VCPKG Build Linux",
+      "displayName": "VCPKG Build Linux (debug)",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
