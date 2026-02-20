@@ -6,6 +6,7 @@ A repository that contains all WBSF related repos for a single build
 ```
 git clone --recurse-submodules https://github.com/RNCan/WBSFProjects.git
 ```
+*Note : Please make sure that your local clone path doesn't not contain special characters like parenthesis as those can prevent proper configuration or build*
 
 2. Open a terminal into the cloned directory and initialize the vcpkg toolchain using commands : (this is required only once after cloning the repository)
 
@@ -20,12 +21,6 @@ On Linux :
 ./vcpkg/bootstrap-vcpkg.sh
 ```
 # Configuring
-## Configuring with Visual Studio 2022
-1. If using Visual Studio, make sure VS2022 is configured to use vcpkg manifests as explained here : https://learn.microsoft.com/en-us/vcpkg/consume/manifest-mode?tabs=msbuild%2Cbuild-visual-studio
-2. Launch Visual Studio, then click the "Open a local folder" button, and select the location where the WBSFProjects repo was cloned
-3. At this point, if this is the first time you're building this repository on your PC, vcpkg will download all dependencies (including GDAL and Boost) and build them, which takes a while
-4. When the "CMake generation finished" shows in the output window, the final VS2022 solution files have been generated.  Open the global solution located in "./build/vs2022/WBSFProjects.sln".
-
 ## Configuring with CMake (Windows & Linux)
 1. (Linux) Make sure the following packages are installed using command (on Ubuntu))
 ```
@@ -91,6 +86,6 @@ On Linux - release configuration:
 ```
 cmake --build --preset linux-release --target INSTALL
 ```
-Those commands will install all needed files for the SioSIM_API DLL to run including the model .mdl and .dll files into the ./package directory.
+Those commands will install all needed files for the BioSIM_API DLL to run including the model .mdl and .dll files into the ./package directory.
 
 At this point, the BioSIM_API DLL is ready to be used for building the WebAPI project.  Please refer to its README file for further instructions.
