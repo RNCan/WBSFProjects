@@ -18,6 +18,7 @@ add_library(LeucotaraxisArgenticollis SHARED
 )
 
 target_link_libraries(LeucotaraxisArgenticollis PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

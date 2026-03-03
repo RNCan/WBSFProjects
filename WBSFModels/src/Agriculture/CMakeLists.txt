@@ -17,6 +17,7 @@ add_library(InsectDevelopmentDatabaseII SHARED
 )
 
 target_link_libraries(InsectDevelopmentDatabaseII PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -41,6 +42,7 @@ add_library(InsectDevelopmentDatabaseIII SHARED
 )
 
 target_link_libraries(InsectDevelopmentDatabaseIII PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -65,6 +67,7 @@ add_library(MagareyInfection SHARED
 )
 
 target_link_libraries(MagareyInfection PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

@@ -18,6 +18,7 @@ add_library(WhitemarkedTussockMoth SHARED
 )
 
 target_link_libraries(WhitemarkedTussockMoth PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

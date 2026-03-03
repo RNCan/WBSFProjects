@@ -18,6 +18,7 @@ add_library(LaricobiusOsakensis SHARED
 )
 
 target_link_libraries(LaricobiusOsakensis PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

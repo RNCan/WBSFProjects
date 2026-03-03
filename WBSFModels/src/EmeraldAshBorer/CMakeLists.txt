@@ -18,6 +18,7 @@ add_library(EmeraldAshBorer SHARED
 )
 
 target_link_libraries(EmeraldAshBorer PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -43,6 +44,7 @@ add_library(EmeraldAshBorerColdHardiness SHARED
 )
 
 target_link_libraries(EmeraldAshBorerColdHardiness PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

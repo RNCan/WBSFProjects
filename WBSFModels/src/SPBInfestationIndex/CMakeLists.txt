@@ -18,6 +18,7 @@ add_library(SouthernPineBeetleInfestationIndex SHARED
 )
 
 target_link_libraries(SouthernPineBeetleInfestationIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

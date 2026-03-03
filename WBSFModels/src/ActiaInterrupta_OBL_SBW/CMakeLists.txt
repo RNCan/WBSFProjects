@@ -21,6 +21,7 @@ add_library(ActiaInterrupta_OBL_SBW SHARED
 )
 
 target_link_libraries(ActiaInterrupta_OBL_SBW PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

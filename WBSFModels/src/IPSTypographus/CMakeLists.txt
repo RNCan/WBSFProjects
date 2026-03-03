@@ -18,6 +18,7 @@ add_library(SpruceBarkBeetleLiterature SHARED
 )
 
 target_link_libraries(SpruceBarkBeetleLiterature PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

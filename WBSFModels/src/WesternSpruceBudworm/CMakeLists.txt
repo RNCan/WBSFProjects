@@ -18,6 +18,7 @@ add_library(WesternSpruceBudworm SHARED
 )
 
 target_link_libraries(WesternSpruceBudworm PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

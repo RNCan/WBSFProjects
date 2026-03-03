@@ -18,6 +18,7 @@ add_library(ClimaticMPB SHARED
 )
 
 target_link_libraries(ClimaticMPB PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -40,6 +41,7 @@ add_library(MPBLib STATIC
 )
 
 target_link_libraries(MPBLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

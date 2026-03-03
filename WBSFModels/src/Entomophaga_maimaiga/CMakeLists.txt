@@ -20,6 +20,7 @@ add_library(EntomophagaMaimaiga SHARED
 target_link_libraries(EntomophagaMaimaiga PUBLIC
 	GSL::gsl 
 	GSL::gslcblas
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

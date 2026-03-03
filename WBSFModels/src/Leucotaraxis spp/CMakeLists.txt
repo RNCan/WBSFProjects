@@ -18,6 +18,7 @@ add_library(LeucotaraxisSpp SHARED
 )
 
 target_link_libraries(LeucotaraxisSpp PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
