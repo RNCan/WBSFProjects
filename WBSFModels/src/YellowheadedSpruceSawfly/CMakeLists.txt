@@ -18,6 +18,7 @@ add_library(YellowheadedSpruceSawfly SHARED
 )
 
 target_link_libraries(YellowheadedSpruceSawfly PUBLIC
+  BioSIM_API
   WBSFBasic
   WBSFModelBased
   WBSFWeatherBased

@@ -18,6 +18,7 @@ add_library(MeteorusTrachynotusLib STATIC
 )
 
 target_link_libraries(MeteorusTrachynotusLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

@@ -17,6 +17,7 @@ add_library(ObliqueBandedLeafrollerLib STATIC
 )
 
 target_link_libraries(ObliqueBandedLeafrollerLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

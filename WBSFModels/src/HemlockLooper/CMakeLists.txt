@@ -18,6 +18,7 @@ add_library(HemlockLooper SHARED
 )
 
 target_link_libraries(HemlockLooper PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

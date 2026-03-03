@@ -18,6 +18,7 @@ add_library(ClimaticLib STATIC
 )
 
 target_link_libraries(ClimaticLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 )
 
@@ -41,6 +42,7 @@ add_library(AllenWave SHARED
 )
 
 target_link_libraries(AllenWave PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -66,6 +68,7 @@ add_library(ASCE-ETc SHARED
 )
 
 target_link_libraries(ASCE-ETc PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -91,6 +94,7 @@ add_library(ASCE-ETsz SHARED
 )
 
 target_link_libraries(ASCE-ETsz PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -115,6 +119,7 @@ add_library(BlueStainVariables SHARED
 )
 
 target_link_libraries(BlueStainVariables PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -139,6 +144,7 @@ add_library(CaroleCoursolle SHARED
 )
 
 target_link_libraries(CaroleCoursolle PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -163,6 +169,7 @@ add_library(CCBio SHARED
 )
 
 target_link_libraries(CCBio PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -187,6 +194,7 @@ add_library(ChillingDegreeDay SHARED
 )
 
 target_link_libraries(ChillingDegreeDay PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -211,6 +219,7 @@ add_library(ClimateMoistureIndex SHARED
 )
 
 target_link_libraries(ClimateMoistureIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -236,6 +245,7 @@ add_library(Climatic SHARED
 )
 
 target_link_libraries(Climatic PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -260,6 +270,7 @@ add_library(ClimaticMoistureDeficit SHARED
 )
 
 target_link_libraries(ClimaticMoistureDeficit PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -285,6 +296,7 @@ add_library(ClimaticQc SHARED
 )
 
 target_link_libraries(ClimaticQc PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -310,6 +322,7 @@ add_library(ClimaticWind SHARED
 )
 
 target_link_libraries(ClimaticWind PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -335,6 +348,7 @@ add_library(Climdex SHARED
 )
 
 target_link_libraries(Climdex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -360,6 +374,7 @@ add_library(CornHeatUnits SHARED
 )
 
 target_link_libraries(CornHeatUnits PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -385,6 +400,7 @@ add_library(DailyVsHourly SHARED
 )
 
 target_link_libraries(DailyVsHourly PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -409,6 +425,7 @@ add_library(DailyVsNormals SHARED
 )
 
 target_link_libraries(DailyVsNormals PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -434,6 +451,7 @@ add_library(DegreeDay SHARED
 )
 
 target_link_libraries(DegreeDay PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -459,6 +477,7 @@ add_library(DegreeHour SHARED
 )
 
 target_link_libraries(DegreeHour PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -484,6 +503,7 @@ add_library(DewPeriod SHARED
 )
 
 target_link_libraries(DewPeriod PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -509,6 +529,7 @@ add_library(HourlyGenerator SHARED
 )
 
 target_link_libraries(HourlyGenerator PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -534,6 +555,7 @@ add_library(SpringFrost SHARED
 )
 
 target_link_libraries(SpringFrost PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -559,6 +581,7 @@ add_library(GrowingSeason SHARED
 )
 
 target_link_libraries(GrowingSeason PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -584,6 +607,7 @@ add_library(PotentialEvapotranspiration SHARED
 )
 
 target_link_libraries(PotentialEvapotranspiration PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -609,6 +633,7 @@ add_library(ReverseDegreeDay SHARED
 )
 
 target_link_libraries(ReverseDegreeDay PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -634,6 +659,7 @@ add_library(SnowMelt SHARED
 )
 
 target_link_libraries(SnowMelt PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -659,6 +685,7 @@ add_library(SoilTemperature SHARED
 )
 
 target_link_libraries(SoilTemperature PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -684,6 +711,7 @@ add_library(TminTairTmax SHARED
 )
 
 target_link_libraries(TminTairTmax PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -709,6 +737,7 @@ add_library(UnderbarkTemperature SHARED
 )
 
 target_link_libraries(UnderbarkTemperature PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -734,6 +763,7 @@ add_library(VaporPressureDeficit SHARED
 )
 
 target_link_libraries(VaporPressureDeficit PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -759,6 +789,7 @@ add_library(VHR_to_Landsat SHARED
 )
 
 target_link_libraries(VHR_to_Landsat PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -783,6 +814,7 @@ add_library(WetnessDuration SHARED
 )
 
 target_link_libraries(WetnessDuration PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -808,6 +840,7 @@ add_library(WinterThaw SHARED
 )
 
 target_link_libraries(WinterThaw PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -833,6 +866,7 @@ add_library(WorldClimVars SHARED
 )
 
 target_link_libraries(WorldClimVars PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -857,6 +891,7 @@ add_library(BlueStainIndex SHARED
 )
 
 target_link_libraries(BlueStainIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

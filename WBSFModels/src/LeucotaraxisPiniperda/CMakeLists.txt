@@ -18,6 +18,7 @@ add_library(LeucotaraxisPiniperda SHARED
 )
 
 target_link_libraries(LeucotaraxisPiniperda PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

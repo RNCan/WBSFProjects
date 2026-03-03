@@ -16,6 +16,7 @@ add_library(AprocerosLeucopoda SHARED
 )
 
 target_link_libraries(AprocerosLeucopoda PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

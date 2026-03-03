@@ -18,6 +18,7 @@ add_library(JackpineBudworm SHARED
 )
 
 target_link_libraries(JackpineBudworm PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

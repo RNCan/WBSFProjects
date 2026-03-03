@@ -24,6 +24,7 @@ add_library(GypsyMothLib STATIC
 )
 
 target_link_libraries(GypsyMothLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

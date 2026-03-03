@@ -20,6 +20,7 @@ add_library(SiteIndexClimate SHARED
 )
 
 target_link_libraries(SiteIndexClimate PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

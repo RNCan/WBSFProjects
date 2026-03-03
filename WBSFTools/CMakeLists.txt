@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
 project(WBSFTools LANGUAGES CXX)
 
-add_subdirectory(BioSIM_API)
+if(NOT TARGET BioSIM_API)
+  add_subdirectory(BioSIM_API)
+endif()
 add_subdirectory(BioSIM_APITest)
 add_subdirectory(WeatherGenerator)
 add_subdirectory(CompressWeather)

@@ -18,6 +18,7 @@ add_library(WaterBalance SHARED
 )
 
 target_link_libraries(WaterBalance PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

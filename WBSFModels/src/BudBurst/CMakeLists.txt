@@ -18,6 +18,7 @@ add_library(BudBurst SHARED
 )
 
 target_link_libraries(BudBurst PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -43,6 +44,7 @@ add_library(BudBurstSaintAmant SHARED
 )
 
 target_link_libraries(BudBurstSaintAmant PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -69,6 +71,7 @@ add_library(BudBurstSBWHost SHARED
 )
 
 target_link_libraries(BudBurstSBWHost PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -95,6 +98,7 @@ add_library(BudBurstUlmus SHARED
 )
 
 target_link_libraries(BudBurstUlmus PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -121,6 +125,7 @@ add_library(ShootDevelopmentIndex SHARED
 )
 
 target_link_libraries(ShootDevelopmentIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

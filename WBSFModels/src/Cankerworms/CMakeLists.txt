@@ -18,6 +18,7 @@ add_library(FallCankerworms SHARED
 )
 
 target_link_libraries(FallCankerworms PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -43,6 +44,7 @@ add_library(SpringCankerworms SHARED
 )
 
 target_link_libraries(SpringCankerworms PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

@@ -18,6 +18,7 @@ add_library(WhitePineWeevil SHARED
 )
 
 target_link_libraries(WhitePineWeevil PUBLIC
+  BioSIM_API
   WBSFBasic
   WBSFModelBased
   WBSFWeatherBased
