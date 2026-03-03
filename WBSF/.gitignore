@@ -1,0 +1,10 @@
+/build/cb/obj/
+/build/msvc/obj/
+/doc/html
+/lib
+/obj
+
+*.depnd
+*.layout
+
+/build/msvc/.vs

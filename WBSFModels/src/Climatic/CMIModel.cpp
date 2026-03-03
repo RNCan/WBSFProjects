@@ -1,0 +1,199 @@
+//*********************************************************************
+//19/08/2019	3.2.0	Rémi Saint-Amant    Add limit to zero. False by default.
+//31/01/2018	3.1.3	Rémi Saint-Amant    recompile
+//17/05/2017	3.1.2	Rémi Saint-Amant    Bug correction when more than 2 years
+//27/03/2017	3.1.1	Rémi Saint-Amant    recompile
+//20/09/2016	3.1.0	Rémi Saint-Amant    Change Tair and Trng by Tmin and Tmax
+//06/09/2016			Rémi Saint-Amant	Integration with WBSF
+//10/01/2014			Rémi Saint-Amant	New version for BioSIM 10.5
+//22/07/2011			Rémi Saint-Amant	New version for BioSIM 10 and VC 2010
+//15/11/2007			Rémi Saint-Amant	Compile with visual C++ 8
+//10/10/2005			Rémi Saint-Amant	Creation
+//*********************************************************************
+
+#include "CMIModel.h"
+#include "ModelBased/EntryPoint.h"
+#include "WeatherBased/WeatherStation.h"
+#include "WeatherBased/DegreeDays.h"
+
+using namespace WBSF::HOURLY_DATA;
+using namespace std;
+
+
+namespace WBSF
+{
+	//this line link this model with the EntryPoint of the DLL
+	static const bool bRegistred =
+		CModelFactory::RegisterModel(CCMIModel::CreateObject);
+
+
+	CCMIModel::CCMIModel()
+	{
+		NB_INPUT_PARAMETER = 1;
+		VERSION = "3.2.0 (2019)";
+	}
+
+	ERMsg CCMIModel::ProcessParameters(const CParameterVector& parameters)
+	{
+		assert(m_weather.size() > 0);
+
+		ERMsg msg;
+
+		int c = 0;
+		m_bLimitToZero = parameters[c++].GetBool();
+
+		return msg;
+	}
+
+
+
+	ERMsg CCMIModel::OnExecuteAnnual()
+	{
+		ERMsg msg;
+
+
+		CTM TM = m_weather.GetTM();
+
+		//Compute DD5
+		CDegreeDays DD(CDegreeDays::DAILY_AVERAGE, 5);
+		CModelStatVector DD5;
+		DD.Execute(m_weather, DD5);
+
+
+		//Create output vector
+		m_output.Init(m_weather.GetNbYears() - 1, CTRef(m_weather.GetFirstYear()+1), NB_A_OUTPUT);
+
+		//compute variable for all year except the first one
+		for (size_t y = 1; y < m_weather.GetNbYears(); y++)
+		{
+			int year = m_weather.GetFirstYear() + int(y);
+			CTPeriod p1(CTRef(year - 1, AUGUST, DAY_01, 0, TM), CTRef(year, JULY, DAY_31, 23,TM));
+			CTPeriod p2(CTRef(year, JANUARY, DAY_01, 0,TM), CTRef(year, JULY, DAY_31, 23, TM) );
+
+			double gddwyr = DD5.GetStat(CDegreeDays::S_DD, p1)[SUM];
+			double gddcum = DD5.GetStat(CDegreeDays::S_DD, p2)[SUM];
+
+			CTPeriod p3(CTRef( year, MARCH, DAY_01, 0,TM), CTRef( year, JUNE, DAY_31, 23,TM));
+			double pptSummer = m_weather[y](H_PRCP, p3)[SUM] / 10;//in cm
+
+			//conversion from mm to cm
+			double Pwyr = m_weather.GetStat(H_PRCP, p1)[SUM] / 10;
+			double PETwyr = GetSPMPET(m_weather, p1) / 10;
+
+			double tmaxwyr = m_weather.GetStat(H_TMAX, p1)[MEAN];
+			double tminwyr = m_weather.GetStat(H_TMIN, p1)[MEAN];
+
+			double CMIwyr = Pwyr - PETwyr;
+			if (m_bLimitToZero&&CMIwyr < 0)
+				CMIwyr = 0;
+
+			m_output[y - 1][O_GDD_CUM] = gddcum;
+			m_output[y - 1][O_GDD_WYR] = gddwyr;
+			m_output[y - 1][O_CMI_WYR] = CMIwyr;
+			m_output[y - 1][O_PPT_WYR] = Pwyr;
+			m_output[y - 1][O_PET_WYR] = PETwyr;
+			m_output[y - 1][O_TMAX_WYR] = tmaxwyr;
+			m_output[y - 1][O_TMIN_WYR] = tminwyr;
+			m_output[y - 1][O_PPT_SUMMER] = pptSummer;
+
+		}
+
+
+
+		return msg;
+	}
+
+	//Compute monthly value
+	ERMsg CCMIModel::OnExecuteMonthly()
+	{
+		ERMsg msg;
+
+
+		//Create output vector
+		m_output.Init(m_weather.GetNbYears() * 12, CTRef(m_weather.GetFirstYear(), JANUARY), NB_M_OUTPUT);
+
+		//compute CMI for each months of all years
+		for (size_t y = 0; y < m_weather.GetNbYears(); y++)
+		{
+			for (size_t m = 0; m < 12; m++)
+			{
+				double TMaxMean = m_weather[y][m][H_TMAX][MEAN];
+				double TMinMean = m_weather[y][m][H_TMIN][MEAN];
+				double TMeanMean = m_weather[y][m][H_TNTX][MEAN];
+
+				double pptSum = m_weather[y][m].GetStat(H_PRCP)[SUM] / 10;//in cm
+				double PETSum = GetSPMPET(m_weather[y][m]) / 10;//in cm
+				double CMI = pptSum - PETSum;
+				if (m_bLimitToZero&&CMI < 0)
+					CMI = 0;
+
+				m_output[y * 12 + m][O_TMAX_MEAN] = TMaxMean;
+				m_output[y * 12 + m][O_TMIN_MEAN] = TMinMean;
+				m_output[y * 12 + m][O_PPT_SUM] = pptSum;
+				m_output[y * 12 + m][O_PET_SUM] = PETSum;
+				m_output[y * 12 + m][O_CMI] = CMI;
+			}
+		}
+
+
+
+		return msg;
+	}
+
+
+	//Calculate Simplified Penman-Monteith PET (monthly)
+	double CCMIModel::GetSPMPET(const CWeatherMonth& weather)
+	{
+		double elev = weather.GetLocation().m_elev;
+		assert(elev > -999);
+
+		//input monthly tmax, tmin, prec and calculate tmean
+		double TMax = weather[H_TMAX][MEAN];
+		double TMin = weather[H_TMIN][MEAN];
+		double TMean = weather[H_TNTX][MEAN];
+
+		//First calculate SVP for monthly tmax tmin and tdew (assumed = tmin - 2.5)
+		double SVPtmax = .61078 * exp(17.269 * TMax / (237.3 + TMax));
+		double SVPtmin = .61078 * exp(17.269 * TMin / (237.3 + TMin));
+		double tdew = TMin - 2.5;
+		double SVPtdew = .61078 * exp(17.269 * tdew / (237.3 + tdew));
+		double VPD = .5 * (SVPtmax + SVPtmin) - SVPtdew;
+
+		//Now calculate PET from Hogg 1997
+		double PET = 0;
+		if (TMean > 10)
+			PET = 93 * VPD * exp(double(elev / 9300.0));
+		else if (TMean > -5)
+			PET = (6.2 * TMean + 31) * VPD * exp(elev / 9300.0);
+		else
+			PET = 0;
+
+		return PET;
+	}
+
+
+	//Calculate Simplified Penman-Monteith PET (annual)
+	double CCMIModel::GetSPMPET(const CWeatherStation& weather, CTPeriod& p)
+	{
+
+		double PETwyr = 0;
+
+		for (size_t y = 0; y < weather.GetNbYears(); y++)
+		{
+			int year = weather.GetFirstYear() + int(y);
+
+			for (size_t m = 0; m < 12; m++)
+			{
+				CTPeriod pp = weather[y][m].GetEntireTPeriod();
+				if (p.is_inside(pp) )//is this month is used
+				{
+					double PET = GetSPMPET(weather[y][m]);
+					PETwyr += PET;
+				}
+			}
+		}
+
+		return PETwyr;
+	}
+
+}

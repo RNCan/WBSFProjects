@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="UnitTests" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/UnitTests" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option additional_output="../Basic/bin/Debug/libBasic.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-std=gnu++17" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DBOOST_PROCESS_USE_STD_FS" />
+					<Add directory="../../../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+					<Add library="../../../lib/Debug/libBasic.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/UnitTests" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DNDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Linker>
+			<Add option="-lgtest" />
+			<Add option="-lgtest_main" />
+			<Add option="-fopenmp" />
+			<Add option="-pthread" />
+			<Add library="libboost_process-mt" />
+			<Add library="libboost_filesystem-mt" />
+			<Add library="libboost_serialization-mt" />
+			<Add library="ws2_32" />
+		</Linker>
+		<Unit filename="../../../test/Basic/TestUtilTime.cpp" />
+		<Unit filename="../../../test/main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

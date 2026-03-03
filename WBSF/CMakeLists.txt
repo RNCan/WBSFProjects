@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.25)
+project(WBSF LANGUAGES CXX)
+
+add_subdirectory(src/Basic)
+add_subdirectory(src/Geomatic)
+add_subdirectory(src/ModelBased)
+add_subdirectory(src/WeatherBased)
+add_subdirectory(test)
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+  set_target_properties(WBSFBasic PROPERTIES FOLDER "WBSF")
+  set_target_properties(WBSFGeomatic PROPERTIES FOLDER "WBSF")
+  set_target_properties(WBSFModelBased PROPERTIES FOLDER "WBSF")
+  set_target_properties(WBSFWeatherBased PROPERTIES FOLDER "WBSF")  
+  set_target_properties(WBSFTest PROPERTIES FOLDER "WBSF")  
+endif()

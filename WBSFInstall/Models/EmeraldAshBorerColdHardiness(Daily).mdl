@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Model version="3">
+    <Title>Emerald Ahs Borer COld Hardiness</Title>
+    <Version>1.0</Version>
+    <ID/>
+    <EXE>EmeraldAshBorerColdHardiness.dll</EXE>
+    <Behaviour>0</Behaviour>
+    <Description>Emerald Ahs Borer phenology</Description>
+    <WindowRect>0 0 100 250</WindowRect>
+    <SimulatedCategory>TN T TX</SimulatedCategory>
+    <TransferFileVersion>2</TransferFileVersion>
+    <SSI/>
+    <NbYearMin>2</NbYearMin>
+    <NbYearMax>999</NbYearMax>
+    <ThreadSafe>true</ThreadSafe>
+    <InputVariableArray/>
+    <OutputTypeMode>2 0</OutputTypeMode>
+    <MissingValue>-999</MissingValue>
+    <OutputVariableArray>
+        <OutputVariable>
+            <Name>TairMin</Name>
+            <Title>TairMin</Title>
+            <Units>°C</Units>
+            <Description>Minimum daily air temperature</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>1</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>TbarkMin</Name>
+            <Title>TbarkMin</Title>
+            <Units>°C</Units>
+            <Description>Minimum daily bark temperature</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>1</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>Tw</Name>
+            <Title>Tw</Title>
+            <Units>°C</Units>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>1</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>SCP</Name>
+            <Title>SCP</Title>
+            <Units>°C</Units>
+            <Description>Super Cooling Point</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>1</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>Mortality</Name>
+            <Title>Mortality</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>2</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>Tmin_SCP</Name>
+            <Title>Tmin_SCP</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+    </OutputVariableArray>
+    <Copyright>WARNING: this model was never validated</Copyright>
+    <Credit>Developed by Remi Saint-Amant from Cuddington 2018 publication</Credit>
+    <HelpFileName/>
+</Model>

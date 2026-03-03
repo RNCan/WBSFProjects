@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ModelBased" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../lib/Debugx64/ModelBased" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debugx64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-std=gnu++20" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-ggdb" />
+					<Add option="-g" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add option="-Wno-overloaded-virtual" />
+					<Add option="-pthread" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DBOOST_PROCESS_USE_STD_FS" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../../lib/Releasex64/ModelBased" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Releasex64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-std=gnu++20" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m64" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../src/ModelBased/BioSIMModelBase.cpp" />
+		<Unit filename="../../src/ModelBased/BioSIMModelBase.h" />
+		<Unit filename="../../src/ModelBased/CommunicationStream.cpp" />
+		<Unit filename="../../src/ModelBased/CommunicationStream.h" />
+		<Unit filename="../../src/ModelBased/ContinuingRatio.cpp" />
+		<Unit filename="../../src/ModelBased/ContinuingRatio.h" />
+		<Unit filename="../../src/ModelBased/DevRateEquation.cpp" />
+		<Unit filename="../../src/ModelBased/DevRateEquation.h" />
+		<Unit filename="../../src/ModelBased/EntryPoint.cpp" />
+		<Unit filename="../../src/ModelBased/EntryPoint.h" />
+		<Unit filename="../../src/ModelBased/EquationTableLookup.cpp" />
+		<Unit filename="../../src/ModelBased/EquationTableLookup.h" />
+		<Unit filename="../../src/ModelBased/IndividualBase.cpp" />
+		<Unit filename="../../src/ModelBased/IndividualBase.h" />
+		<Unit filename="../../src/ModelBased/InitialPopulation.cpp" />
+		<Unit filename="../../src/ModelBased/InitialPopulation.h" />
+		<Unit filename="../../src/ModelBased/InputParam.cpp" />
+		<Unit filename="../../src/ModelBased/InputParam.h" />
+		<Unit filename="../../src/ModelBased/Model.cpp" />
+		<Unit filename="../../src/ModelBased/Model.h" />
+		<Unit filename="../../src/ModelBased/ModelBaseError.cpp" />
+		<Unit filename="../../src/ModelBased/ModelBaseError.h" />
+		<Unit filename="../../src/ModelBased/ModelDistribution.cpp" />
+		<Unit filename="../../src/ModelBased/ModelDistribution.h" />
+		<Unit filename="../../src/ModelBased/ModelInput.cpp" />
+		<Unit filename="../../src/ModelBased/ModelInput.h" />
+		<Unit filename="../../src/ModelBased/ModelInputParameter.cpp" />
+		<Unit filename="../../src/ModelBased/ModelInputParameter.h" />
+		<Unit filename="../../src/ModelBased/ModelOutputVariable.cpp" />
+		<Unit filename="../../src/ModelBased/ModelOutputVariable.h" />
+		<Unit filename="../../src/ModelBased/OutputFile.cpp" />
+		<Unit filename="../../src/ModelBased/OutputFile.h" />
+		<Unit filename="../../src/ModelBased/ParametersVariations.cpp" />
+		<Unit filename="../../src/ModelBased/ParametersVariations.h" />
+		<Unit filename="../../src/ModelBased/SerializeRect.h" />
+		<Unit filename="../../src/ModelBased/SimulatedAnnealingVector.cpp" />
+		<Unit filename="../../src/ModelBased/SimulatedAnnealingVector.h" />
+		<Unit filename="../../src/ModelBased/SurvivalEquation.cpp" />
+		<Unit filename="../../src/ModelBased/SurvivalEquation.h" />
+		<Unit filename="../../src/ModelBased/WGInput-ModelInput.cpp" />
+		<Unit filename="../../src/ModelBased/WGInput-ModelInput.h" />
+		<Unit filename="../../src/ModelBased/WGInput.cpp" />
+		<Unit filename="../../src/ModelBased/WGInput.h" />
+		<Unit filename="../../src/ModelBased/WeatherBasedSimulation.h" />
+		<Unit filename="../../src/ModelBased/WeatherStatistic.cpp" />
+		<Unit filename="../../src/ModelBased/WeatherStatistic.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

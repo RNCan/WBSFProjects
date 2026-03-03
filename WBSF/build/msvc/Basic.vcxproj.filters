@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ANN">
+      <UniqueIdentifier>{8ec01902-2050-4bf7-9900-bbe9fc29f095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ARModel">
+      <UniqueIdentifier>{de5c065f-0c66-4bc5-9aba-06e7ac2aa2ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ERMsg">
+      <UniqueIdentifier>{6ad9e82e-4c39-4943-8246-f76e2543f546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mpfit">
+      <UniqueIdentifier>{543aae10-7b19-47cb-8e0b-ace3409cd246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\pugixml">
+      <UniqueIdentifier>{f8bcc145-82d3-4f24-bb14-eb010eed0857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\KMeanLocal">
+      <UniqueIdentifier>{81efd38c-25ca-4eb9-bdf3-91703607055f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NewMat">
+      <UniqueIdentifier>{0ea074bc-9dd4-4a58-a75b-1de4366df163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\muparser">
+      <UniqueIdentifier>{d4c55cf3-44fe-41ec-b87b-f7c06d0a0c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\json11">
+      <UniqueIdentifier>{203714fa-38ff-42b1-aa53-709a99667ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TCALP">
+      <UniqueIdentifier>{3162558f-f229-4d91-b063-be59005f3728}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Basic\ApproximateNearestNeighbor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Callback.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\CallcURL.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\CSV.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Dbf3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Event.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\GeoBasic.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\gzip.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Location.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\LRUCache.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ModelStat.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Mtrx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\OpenMP.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\SearchResult.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Shore.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\SimulatedAnnealing.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Statistic.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Sun.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\TimeStep.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\UtilMath.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\UtilStd.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\UtilTime.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\ANN.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\ANNperf.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\ANNx.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\bd_tree.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\kd_pr_search.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\kd_search.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\kd_split.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\kd_tree.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\kd_util.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\pr_queue.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ANN\pr_queue_k.h">
+      <Filter>Source Files\ANN</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParser.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserBase.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserBytecode.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserCallback.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserDef.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserDLL.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserError.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserFixes.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserInt.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserTemplateMagic.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserTest.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserToken.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\muparser\muParserTokenReader.h">
+      <Filter>Source Files\muparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\controlw.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\include.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\myexcept.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\newmat.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\newmatap.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\newmatio.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\newmatnl.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\newmatrc.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\newmatrm.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\precisio.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\Regression.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\Newmat\solution.h">
+      <Filter>Source Files\NewMat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\mpfit\mpfit.h">
+      <Filter>Source Files\mpfit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KCtree.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KCutil.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KM_ANN.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMcenters.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMdata.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMeans.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMfilterCenters.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMlocal.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMrand.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\KMeanLocal\KMterm.h">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg\Ererreur.h">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg\Erexcept.h">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg\Sycptref.h">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg\Sycptref.hpp">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg\Syenvmsg.h">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ERMsg\Symessag.h">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\ARModel\ARModel.h">
+      <Filter>Source Files\ARModel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\pugixml\pugiconfig.hpp">
+      <Filter>Source Files\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\pugixml\pugixml.hpp">
+      <Filter>Source Files\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\json\json11.hpp">
+      <Filter>Source Files\json11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\xml.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\Arg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\ArgContainer.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\ArgException.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\ArgGroup.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\ArgTraits.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\CmdLine.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\CmdLineInterface.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\CmdLineOutput.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\Constraint.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\DeferDelete.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\DocBookOutput.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\HelpVisitor.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\IgnoreRestVisitor.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\MultiArg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\MultiSwitchArg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\OptionalUnlabeledTracker.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\sstream.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\StandardTraits.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\StdOutput.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\SwitchArg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\UnlabeledMultiArg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\UnlabeledValueArg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\ValueArg.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\ValuesConstraint.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\VersionVisitor.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Basic\tclap\Visitor.h">
+      <Filter>Source Files\TCALP</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Basic\ApproximateNearestNeighbor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Callback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\CallcURL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\CSV.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Dbf3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\GeoBasic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\gzip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ModelStat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Mtrx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\SearchResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Shore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\SimulatedAnnealing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Statistic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Sun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\TimeStep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\UtilMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\UtilStd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\UtilTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\ANN.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\bd_pr_search.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\bd_search.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\bd_tree.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\brute.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\kd_dump.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\kd_pr_search.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\kd_search.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\kd_split.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\kd_tree.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\kd_util.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ANN\perf.cpp">
+      <Filter>Source Files\ANN</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParser.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserBase.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserBytecode.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserCallback.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserDLL.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserError.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserInt.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserTest.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\muparser\muParserTokenReader.cpp">
+      <Filter>Source Files\muparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\bandmat.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\cholesky.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\evalue.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\fft.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\hholder.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\jacobi.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\myexcept.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newfft.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat1.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat2.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat3.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat4.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat5.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat6.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat7.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat8.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmat9.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmatex.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmatnl.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\newmatrm.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\nm_misc.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\Regression.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\solution.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\sort.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\submat.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\Newmat\svd.cpp">
+      <Filter>Source Files\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\mpfit\mpfit.cpp">
+      <Filter>Source Files\mpfit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KCtree.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KCutil.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KM_ANN.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMcenters.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMdata.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMeans.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMfilterCenters.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMlocal.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMrand.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\KMeanLocal\KMterm.cpp">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ERMsg\Ererreur.cpp">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ERMsg\Erexcept.cpp">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ERMsg\Syenvmsg.cpp">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ERMsg\Symessag.cpp">
+      <Filter>Source Files\ERMsg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\ARModel\ARModel.cpp">
+      <Filter>Source Files\ARModel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\pugixml\pugixml.cpp">
+      <Filter>Source Files\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Basic\json\json11.cpp">
+      <Filter>Source Files\json11</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\src\Basic\Newmat\CMakeLists.txt">
+      <Filter>Source Files\NewMat</Filter>
+    </Text>
+    <Text Include="..\..\src\Basic\Newmat\readme.txt">
+      <Filter>Source Files\NewMat</Filter>
+    </Text>
+    <Text Include="..\..\src\Basic\KMeanLocal\CMakeLists.txt">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </Text>
+    <Text Include="..\..\src\Basic\KMeanLocal\Copyright.txt">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </Text>
+    <Text Include="..\..\src\Basic\KMeanLocal\ReadMe1.7.3.txt">
+      <Filter>Source Files\KMeanLocal</Filter>
+    </Text>
+    <Text Include="..\..\src\Basic\tclap\CMakeLists.txt">
+      <Filter>Source Files\TCALP</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

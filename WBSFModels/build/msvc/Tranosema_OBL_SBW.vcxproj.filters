@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="sources">
+      <UniqueIdentifier>{81a5fc40-89ff-4d98-9a0e-af8ae733cd72}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\ObliqueBandedLeafroller\ObliqueBandedLeafroller.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ObliqueBandedLeafroller\ObliqueBandedLeafrollerEquations.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SpruceBudworm\SpruceBudworm.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SpruceBudworm\SpruceBudwormEquations.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Tranosema\Tranosema.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Tranosema_OBL_SBW\Tranosema_OBL_SBW.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Tranosema_OBL_SBW\Tranosema_OBL_SBW_Model.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Tranosema\TranosemaEquations.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\ObliqueBandedLeafroller\ObliqueBandedLeafroller.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ObliqueBandedLeafroller\ObliqueBandedLeafrollerEquations.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SpruceBudworm\SpruceBudworm.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SpruceBudworm\SpruceBudwormEquations.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Tranosema\Tranosema.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Tranosema_OBL_SBW\Tranosema_OBL_SBW.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Tranosema_OBL_SBW\Tranosema_OBL_SBW_Model.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Tranosema\TranosemaEquations.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

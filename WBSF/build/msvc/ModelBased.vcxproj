@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\ModelBased\BioSIMModelBase.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\CommunicationStream.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ContinuingRatio.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\DevRateEquation.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\EntryPoint.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\EquationTableLookup.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\IndividualBase.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\InitialPopulation.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\InputParam.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\Model.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ModelBaseError.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ModelDistribution.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ModelInput.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ModelInputParameter.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ModelOutputVariable.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\OutputFile.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\ParametersVariations.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\SimulatedAnnealingVector.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\SurvivalEquation.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\WeatherStatistic.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\WGInput-ModelInput.cpp" />
+    <ClCompile Include="..\..\src\ModelBased\WGInput.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\ModelBased\BioSIMModelBase.h" />
+    <ClInclude Include="..\..\src\ModelBased\CommunicationStream.h" />
+    <ClInclude Include="..\..\src\ModelBased\ContinuingRatio.h" />
+    <ClInclude Include="..\..\src\ModelBased\DevRateEquation.h" />
+    <ClInclude Include="..\..\src\ModelBased\EntryPoint.h" />
+    <ClInclude Include="..\..\src\ModelBased\EquationTableLookup.h" />
+    <ClInclude Include="..\..\src\ModelBased\IndividualBase.h" />
+    <ClInclude Include="..\..\src\ModelBased\InitialPopulation.h" />
+    <ClInclude Include="..\..\src\ModelBased\InputParam.h" />
+    <ClInclude Include="..\..\src\ModelBased\Model.h" />
+    <ClInclude Include="..\..\src\ModelBased\ModelBaseError.h" />
+    <ClInclude Include="..\..\src\ModelBased\ModelDistribution.h" />
+    <ClInclude Include="..\..\src\ModelBased\ModelInput.h" />
+    <ClInclude Include="..\..\src\ModelBased\ModelInputParameter.h" />
+    <ClInclude Include="..\..\src\ModelBased\ModelOutputVariable.h" />
+    <ClInclude Include="..\..\src\ModelBased\OutputFile.h" />
+    <ClInclude Include="..\..\src\ModelBased\ParametersVariations.h" />
+    <ClInclude Include="..\..\src\ModelBased\SerializeRect.h" />
+    <ClInclude Include="..\..\src\ModelBased\SimulatedAnnealingVector.h" />
+    <ClInclude Include="..\..\src\ModelBased\SurvivalEquation.h" />
+    <ClInclude Include="..\..\src\ModelBased\WeatherBasedSimulation.h" />
+    <ClInclude Include="..\..\src\ModelBased\WeatherStatistic.h" />
+    <ClInclude Include="..\..\src\ModelBased\WGInput-ModelInput.h" />
+    <ClInclude Include="..\..\src\ModelBased\WGInput.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{6bf374d7-930e-49d4-8e56-2d4098e859d1}</ProjectGuid>
+    <RootNamespace>ModelBased</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>false</EnableASAN>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\lib\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>obj\$(Configuration)$(Platform)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\lib\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>obj\$(Configuration)$(Platform)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\src;C:\local\boost_1_89_0;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <SupportJustMyCode>false</SupportJustMyCode>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>..\..\src;C:\local\boost_1_89_0;</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/w34996 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

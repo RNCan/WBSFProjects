@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Basic" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../lib/Debugx64/Basic" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debugx64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-std=gnu++20" />
+					<Add option="-ggdb" />
+					<Add option="-pthread" />
+					<Add option="-fopenmp" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-unused-result" />
+					<Add option="-Wno-unused-function" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add option="-Wno-overloaded-virtual" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DBOOST_PROCESS_USE_STD_FS" />
+					<Add option="-DMUPARSER_STATIC" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-m64" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../../lib/Releasex64/Basic" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Releasex64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-std=gnu++20" />
+					<Add option="-fPIC" />
+					<Add option="-m64" />
+					<Add option="-ggdb" />
+					<Add option="-pthread" />
+					<Add option="-fopenmp" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wno-unused-result" />
+					<Add option="-Wno-unused-function" />
+					<Add option="-Wno-deprecated-enum-enum-conversion" />
+					<Add option="-Wno-overloaded-virtual" />
+					<Add option="-DNDEBUG" />
+					<Add option="-DBOOST_PROCESS_USE_STD_FS" />
+					<Add option="-DMUPARSER_STATIC" />
+					<Add directory="../../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m64" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../../src/Basic/ANN/ANN.cpp" />
+		<Unit filename="../../src/Basic/ANN/ANN.h" />
+		<Unit filename="../../src/Basic/ANN/ANNperf.h" />
+		<Unit filename="../../src/Basic/ANN/ANNx.h" />
+		<Unit filename="../../src/Basic/ANN/bd_pr_search.cpp" />
+		<Unit filename="../../src/Basic/ANN/bd_search.cpp" />
+		<Unit filename="../../src/Basic/ANN/bd_tree.cpp" />
+		<Unit filename="../../src/Basic/ANN/bd_tree.h" />
+		<Unit filename="../../src/Basic/ANN/brute.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_dump.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_pr_search.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_pr_search.h" />
+		<Unit filename="../../src/Basic/ANN/kd_search.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_search.h" />
+		<Unit filename="../../src/Basic/ANN/kd_split.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_split.h" />
+		<Unit filename="../../src/Basic/ANN/kd_tree.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_tree.h" />
+		<Unit filename="../../src/Basic/ANN/kd_util.cpp" />
+		<Unit filename="../../src/Basic/ANN/kd_util.h" />
+		<Unit filename="../../src/Basic/ANN/perf.cpp" />
+		<Unit filename="../../src/Basic/ANN/pr_queue.h" />
+		<Unit filename="../../src/Basic/ANN/pr_queue_k.h" />
+		<Unit filename="../../src/Basic/ARModel/ARModel.cpp" />
+		<Unit filename="../../src/Basic/ARModel/ARModel.h" />
+		<Unit filename="../../src/Basic/ApproximateNearestNeighbor.cpp" />
+		<Unit filename="../../src/Basic/ApproximateNearestNeighbor.h" />
+		<Unit filename="../../src/Basic/CSV.cpp" />
+		<Unit filename="../../src/Basic/CSV.h" />
+		<Unit filename="../../src/Basic/Callback.cpp" />
+		<Unit filename="../../src/Basic/Callback.h" />
+		<Unit filename="../../src/Basic/CallcURL.cpp" />
+		<Unit filename="../../src/Basic/CallcURL.h" />
+		<Unit filename="../../src/Basic/Dbf3.cpp" />
+		<Unit filename="../../src/Basic/Dbf3.h" />
+		<Unit filename="../../src/Basic/ERMsg.h" />
+		<Unit filename="../../src/Basic/ERMsg/Ererreur.cpp" />
+		<Unit filename="../../src/Basic/ERMsg/Ererreur.h" />
+		<Unit filename="../../src/Basic/ERMsg/Erexcept.cpp" />
+		<Unit filename="../../src/Basic/ERMsg/Erexcept.h" />
+		<Unit filename="../../src/Basic/ERMsg/Sycptref.h" />
+		<Unit filename="../../src/Basic/ERMsg/Sycptref.hpp" />
+		<Unit filename="../../src/Basic/ERMsg/Syenvmsg.cpp" />
+		<Unit filename="../../src/Basic/ERMsg/Syenvmsg.h" />
+		<Unit filename="../../src/Basic/ERMsg/Symessag.cpp" />
+		<Unit filename="../../src/Basic/ERMsg/Symessag.h" />
+		<Unit filename="../../src/Basic/Event.h" />
+		<Unit filename="../../src/Basic/GeoBasic.cpp" />
+		<Unit filename="../../src/Basic/GeoBasic.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KCtree.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KCtree.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KCutil.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KCutil.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KM_ANN.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KM_ANN.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMcenters.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMcenters.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMdata.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMdata.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMeans.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMeans.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMfilterCenters.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMfilterCenters.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMlocal.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMlocal.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMrand.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMrand.h" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMterm.cpp" />
+		<Unit filename="../../src/Basic/KMeanLocal/KMterm.h" />
+		<Unit filename="../../src/Basic/LRUCache.h" />
+		<Unit filename="../../src/Basic/Location.cpp" />
+		<Unit filename="../../src/Basic/Location.h" />
+		<Unit filename="../../src/Basic/ModelStat.cpp" />
+		<Unit filename="../../src/Basic/ModelStat.h" />
+		<Unit filename="../../src/Basic/Mtrx.cpp" />
+		<Unit filename="../../src/Basic/Mtrx.h" />
+		<Unit filename="../../src/Basic/Newmat/Regression.cpp" />
+		<Unit filename="../../src/Basic/Newmat/Regression.h" />
+		<Unit filename="../../src/Basic/Newmat/bandmat.cpp" />
+		<Unit filename="../../src/Basic/Newmat/cholesky.cpp" />
+		<Unit filename="../../src/Basic/Newmat/controlw.h" />
+		<Unit filename="../../src/Basic/Newmat/evalue.cpp" />
+		<Unit filename="../../src/Basic/Newmat/fft.cpp" />
+		<Unit filename="../../src/Basic/Newmat/hholder.cpp" />
+		<Unit filename="../../src/Basic/Newmat/include.h" />
+		<Unit filename="../../src/Basic/Newmat/jacobi.cpp" />
+		<Unit filename="../../src/Basic/Newmat/myexcept.cpp" />
+		<Unit filename="../../src/Basic/Newmat/myexcept.h" />
+		<Unit filename="../../src/Basic/Newmat/newfft.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat.h" />
+		<Unit filename="../../src/Basic/Newmat/newmat1.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat2.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat3.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat4.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat5.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat6.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat7.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat8.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmat9.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmatap.h" />
+		<Unit filename="../../src/Basic/Newmat/newmatex.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmatio.h" />
+		<Unit filename="../../src/Basic/Newmat/newmatnl.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmatnl.h" />
+		<Unit filename="../../src/Basic/Newmat/newmatrc.h" />
+		<Unit filename="../../src/Basic/Newmat/newmatrm.cpp" />
+		<Unit filename="../../src/Basic/Newmat/newmatrm.h" />
+		<Unit filename="../../src/Basic/Newmat/nm_misc.cpp" />
+		<Unit filename="../../src/Basic/Newmat/precisio.h" />
+		<Unit filename="../../src/Basic/Newmat/solution.cpp" />
+		<Unit filename="../../src/Basic/Newmat/solution.h" />
+		<Unit filename="../../src/Basic/Newmat/sort.cpp" />
+		<Unit filename="../../src/Basic/Newmat/submat.cpp" />
+		<Unit filename="../../src/Basic/Newmat/svd.cpp" />
+		<Unit filename="../../src/Basic/OpenMP.h" />
+		<Unit filename="../../src/Basic/SearchResult.cpp" />
+		<Unit filename="../../src/Basic/SearchResult.h" />
+		<Unit filename="../../src/Basic/Shore.cpp" />
+		<Unit filename="../../src/Basic/Shore.h" />
+		<Unit filename="../../src/Basic/SimulatedAnnealing.cpp" />
+		<Unit filename="../../src/Basic/SimulatedAnnealing.h" />
+		<Unit filename="../../src/Basic/Statistic.cpp" />
+		<Unit filename="../../src/Basic/Statistic.h" />
+		<Unit filename="../../src/Basic/Sun.cpp" />
+		<Unit filename="../../src/Basic/Sun.h" />
+		<Unit filename="../../src/Basic/TimeStep.cpp" />
+		<Unit filename="../../src/Basic/TimeStep.h" />
+		<Unit filename="../../src/Basic/UtilMath.cpp" />
+		<Unit filename="../../src/Basic/UtilMath.h" />
+		<Unit filename="../../src/Basic/UtilStd.cpp" />
+		<Unit filename="../../src/Basic/UtilStd.h" />
+		<Unit filename="../../src/Basic/UtilTime.cpp" />
+		<Unit filename="../../src/Basic/UtilTime.h" />
+		<Unit filename="../../src/Basic/gzip.cpp" />
+		<Unit filename="../../src/Basic/gzip.h" />
+		<Unit filename="../../src/Basic/json/json11.cpp" />
+		<Unit filename="../../src/Basic/json/json11.hpp" />
+		<Unit filename="../../src/Basic/mpfit/mpfit.cpp" />
+		<Unit filename="../../src/Basic/mpfit/mpfit.h" />
+		<Unit filename="../../src/Basic/muparser/muParser.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParser.h" />
+		<Unit filename="../../src/Basic/muparser/muParserBase.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserBase.h" />
+		<Unit filename="../../src/Basic/muparser/muParserBytecode.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserBytecode.h" />
+		<Unit filename="../../src/Basic/muparser/muParserCallback.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserCallback.h" />
+		<Unit filename="../../src/Basic/muparser/muParserDLL.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserDLL.h" />
+		<Unit filename="../../src/Basic/muparser/muParserDef.h" />
+		<Unit filename="../../src/Basic/muparser/muParserError.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserError.h" />
+		<Unit filename="../../src/Basic/muparser/muParserFixes.h" />
+		<Unit filename="../../src/Basic/muparser/muParserInt.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserInt.h" />
+		<Unit filename="../../src/Basic/muparser/muParserTemplateMagic.h" />
+		<Unit filename="../../src/Basic/muparser/muParserTest.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserTest.h" />
+		<Unit filename="../../src/Basic/muparser/muParserToken.h" />
+		<Unit filename="../../src/Basic/muparser/muParserTokenReader.cpp" />
+		<Unit filename="../../src/Basic/muparser/muParserTokenReader.h" />
+		<Unit filename="../../src/Basic/nlohmann/json.hpp" />
+		<Unit filename="../../src/Basic/nlohmann/json_fwd.hpp" />
+		<Unit filename="../../src/Basic/pugixml/pugiconfig.hpp" />
+		<Unit filename="../../src/Basic/pugixml/pugixml.cpp" />
+		<Unit filename="../../src/Basic/pugixml/pugixml.hpp" />
+		<Unit filename="../../src/Basic/tortellini.hh" />
+		<Unit filename="../../src/Basic/xml.hpp" />
+		<Extensions>
+			<envvars set="default" />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

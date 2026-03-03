@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Model version="3">
+    <Title>BudBurstSBWHost</Title>
+    <Version>1.0</Version>
+    <ID>.BudBurst</ID>
+    <EXE>BudBurstSBWHost.dll</EXE>
+    <Behaviour>0</Behaviour>
+    <Description>Compute budburst for spruce budworm host: Balsam Fir, White Spruce, Black Spruce, Norway Spruce, Red Spruce</Description>
+    <WindowRect>0 0 155 423</WindowRect>
+    <SimulatedCategory>TN T TX R</SimulatedCategory>
+    <TransferFileVersion>2</TransferFileVersion>
+    <SSI/>
+    <NbYearMin>2</NbYearMin>
+    <NbYearMax>999</NbYearMax>
+    <ThreadSafe>true</ThreadSafe>
+    <InputVariableArray>
+        <InputVariable>
+            <Name>Species</Name>
+            <Caption>Species</Caption>
+            <Description/>
+            <Type>5</Type>
+            <Rect>10 10 30 350</Rect>
+            <SeparatorPos>65</SeparatorPos>
+            <DefaultValue>2</DefaultValue>
+            <MinValue>0</MinValue>
+            <MaxValue>4</MaxValue>
+            <TextValue>Balsam Fir;White Spruce;Black Spruce;Norway Spruce</TextValue>
+        </InputVariable>
+        <InputVariable>
+            <Name>Defoliation</Name>
+            <Caption>Defoliation</Caption>
+            <Description/>
+            <Type>2</Type>
+            <Rect>180 10 200 160</Rect>
+            <SeparatorPos>65</SeparatorPos>
+            <DefaultValue>0</DefaultValue>
+            <MinValue>0</MinValue>
+            <MaxValue>100</MaxValue>
+            <TextValue/>
+        </InputVariable>
+        <InputVariable>
+            <Name>Version</Name>
+            <Caption>Version</Caption>
+            <Description/>
+            <Type>5</Type>
+            <Rect>35 10 60 350</Rect>
+            <SeparatorPos>65</SeparatorPos>
+            <DefaultValue>0</DefaultValue>
+            <MinValue>0</MinValue>
+            <MaxValue>1</MaxValue>
+            <TextValue>Original|Recalibrate</TextValue>
+        </InputVariable>
+        <InputVariable>
+            <Name>SDI_Type</Name>
+            <Caption>SDI_Type</Caption>
+            <Description/>
+            <Type>5</Type>
+            <Rect>145 10 170 350</Rect>
+            <SeparatorPos>65</SeparatorPos>
+            <DefaultValue>1</DefaultValue>
+            <MinValue>0</MinValue>
+            <MaxValue>1</MaxValue>
+            <TextValue>Dhont|Auger</TextValue>
+        </InputVariable>
+        <InputVariable>
+            <Name>Cumulative</Name>
+            <Caption>Cumulative</Caption>
+            <Description/>
+            <Type>0</Type>
+            <Rect>65 10 85 350</Rect>
+            <SeparatorPos>65</SeparatorPos>
+            <DefaultValue>0</DefaultValue>
+            <MinValue>0</MinValue>
+            <MaxValue>1</MaxValue>
+            <TextValue/>
+        </InputVariable>
+    </InputVariableArray>
+    <OutputTypeMode>2 0</OutputTypeMode>
+    <MissingValue>-999</MissingValue>
+    <OutputVariableArray>
+        <OutputVariable>
+            <Name>cS</Name>
+            <Title>cS</Title>
+            <Units>mg/g DW</Units>
+            <Description>Sugar concentration</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>cSt</Name>
+            <Title>cSt</Title>
+            <Units>mm/g DW</Units>
+            <Description>Starch concentration</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>BranchLength</Name>
+            <Title>BranchLength</Title>
+            <Units>mm</Units>
+            <Description>Branch length</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>BudsMass</Name>
+            <Title>BudsMass</Title>
+            <Units>g</Units>
+            <Description>Buds(3) dry weight</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>BranchMass</Name>
+            <Title>BranchMass</Title>
+            <Units>g</Units>
+            <Description>Branch dry weight (exluding buds)</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>NeedleMass</Name>
+            <Title>NeedleMass</Title>
+            <Units>g</Units>
+            <Description>Needles dry weight</Description>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>S0</Name>
+            <Title>S0</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>S1</Name>
+            <Title>S1</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>S2</Name>
+            <Title>S2</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>S3</Name>
+            <Title>S3</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>S4</Name>
+            <Title>S4</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>S5</Name>
+            <Title>S5</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+        <OutputVariable>
+            <Name>SDI</Name>
+            <Title>SDI</Title>
+            <Units/>
+            <Description/>
+            <TimeMode>4 0</TimeMode>
+            <Precision>4</Precision>
+        </OutputVariable>
+    </OutputVariableArray>
+    <Copyright/>
+    <Credit/>
+    <HelpFileName/>
+</Model>

@@ -1,0 +1,937 @@
+//******************************************************************************
+//  Project:		Weather-based simulation framework (WBSF)
+//	Programmer:     Rémi Saint-Amant
+//
+//  It under the terms of the GNU General Public License as published by
+//     the Free Software Foundation
+//  It is provided "as is" without express or implied warranty.
+//
+//******************************************************************************
+// 01-01-2016	Rémi Saint-Amant	Include into Weather-based simulation framework
+// 15-11-2013  Rémi Saint-Amant	Created from old file
+//****************************************************************************
+
+#pragma warning( disable : 4244 )
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/dynamic_bitset.hpp>
+#include <boost/serialization/map.hpp>
+#include <boost/serialization/array.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/set.hpp>
+#include <boost/serialization/unordered_map.hpp>
+#include <boost/algorithm/string.hpp>
+#include <set>
+
+
+#include "Basic/ANN/ANN.h"
+#include "Basic/pugixml/pugixml.hpp"
+
+
+#include "WeatherBased/WeatherStation.h"
+#include "WeatherBased/WeatherDatabaseOptimisation.h"
+
+
+
+#include "WeatherBased/WeatherDatabaseCreator.h"
+
+
+//#include "WeatherBasedSimulationString.h"
+
+
+//#include "Common\MultiAppSync.h"
+//static const char mutexName[] = "CloseSearchNormalMutex";
+//void DoNothing(){}
+
+
+using namespace WBSF::HOURLY_DATA;
+using namespace std;
+
+namespace WBSF
+{
+
+
+    const int CSearchOptimisation::VERSION = 1;
+
+	CSearchOptimisation::CSearchOptimisation()
+	{
+	}
+
+	CSearchOptimisation::~CSearchOptimisation()
+	{
+		assert(!IsOpen());
+
+		if (IsOpen())
+			Close();
+	}
+
+	void CSearchOptimisation::clear()
+	{
+
+		m_ANNs.clear();
+		m_canalPosition.clear();
+		m_filePathIndex.clear();
+		m_filePathData.clear();
+		m_fileIndex.clear();
+		m_fileData.clear();
+
+	}
+
+
+	//static CMultiAppSync appSync;
+	//bool bAlreadyOpen = false;
+
+	ERMsg CSearchOptimisation::Open(const std::string& filePathIndex, const std::string& filePathData)
+	{
+		assert(!IsOpen());
+
+		ERMsg msg;
+
+		clear();
+
+
+		msg += m_fileIndex.open(filePathIndex, ios::in | ios::out | ios::binary | ios::app);//, SH_DENYNO
+		if (msg)
+			msg += m_fileData.open(filePathData, ios::in | ios::out | ios::binary | ios::app);//, SH_DENYWR
+
+		if (msg)
+		{
+
+			try
+			{
+				boost::archive::binary_iarchive ar(m_fileIndex, boost::archive::no_header);
+
+				int version = 0;
+				ar& version;
+				if (version == VERSION)
+				{
+					ar& m_canalPosition;
+					m_ANNs.resize(m_canalPosition.size());
+					m_filePathIndex = filePathIndex;
+					m_filePathData = filePathData;
+
+					//open now for writing only to avoid exception throw in boost
+					m_fileIndex.close();
+					msg = m_fileIndex.open(filePathIndex, ios::out | ios::binary);
+				}
+			}
+			catch (...)
+			{
+				//the file is corrupted, the format have probably change. erase
+				m_fileData.close();
+				msg += m_fileData.open(filePathData, ios::in | ios::out | ios::binary | ios::trunc);
+
+				m_fileIndex.close();
+				msg += m_fileIndex.open(filePathIndex, ios::out | ios::binary | ios::trunc);
+
+				if (msg)
+				{
+					m_filePathIndex = filePathIndex;
+					m_filePathData = filePathData;
+				}
+			}
+		}
+		else
+		{
+			//close both file and rebuild search in memory
+			m_fileData.close();
+			m_fileIndex.close();
+		}
+
+		return ERMsg();//never return error because, able to work without opt search files
+	}
+
+
+	void CSearchOptimisation::Close()
+	{
+		if (IsOpen())
+		{
+			//CMultiAppSync appSyncOpenClose;
+			//appSyncOpenClose.Do("OpenCloseNormal", DoNothing);
+
+
+			//if (!bAlreadyOpen)
+			//{
+			assert(std::distance(m_canalPosition.begin(), m_canalPosition.end()) == m_ANNs.size());
+
+			boost::archive::binary_oarchive ar(m_fileIndex, boost::archive::no_header);
+			ar& VERSION;
+			ar& m_canalPosition;
+
+			m_fileIndex.close();
+			m_fileData.close();
+			clear();
+
+
+			//bAlreadyOpen = false;
+			//appSync.Leave();
+			//}
+
+			//appSyncOpenClose.Leave();
+		}
+
+
+
+
+	}
+
+
+	bool CSearchOptimisation::CanalExists(int64_t canal)const
+	{
+
+		CCanalPositionMap::const_iterator it = m_canalPosition.find(canal);
+
+		//bool bCanalExist =
+		//if (bCanalExist && m_fileData.is_open())//enty must also exist in the data file
+		//{
+		//	bCanalExist = false;
+
+		//	const std::pair<int64_t, uint64_t>& info = it->second;
+		//	if (info.first >= 0 && info.first < int64_t(m_ANNs.size()))
+		//	{
+		//		uint64_t curPos = 0;
+		//		uint64_t length = 0;
+
+		//		CSearchOptimisation& me = const_cast<CSearchOptimisation&>(*this);
+		//		me.m_fileData.seekg(info.second, ios::beg);
+		//		me.m_fileData.read((char*)(&curPos), sizeof(curPos));
+		//		me.m_fileData.read((char*)(&length), sizeof(length));
+		//		bCanalExist = curPos == info.second && length > 0;
+		//	}
+		//}
+
+		return it != m_canalPosition.end();
+	}
+
+	std::pair<int64_t, uint64_t> CSearchOptimisation::AddCanal(int64_t canal, CApproximateNearestNeighborPtr pANN)
+	{
+		//CMultiAppSync appSync;
+		//appSync.Do(mutexName, DoNothing);
+
+		//init wiht a default value of zero when the file is not open
+		std::pair<int64_t, uint64_t> info((int64_t)m_ANNs.size(), 0);
+
+		if (m_fileData.is_open())//open in output
+		{
+			if (CanalExists(canal))
+			{
+				//if the canal exist, therefor, the search data and index file is corrupted.
+				//the need to erase and begin again
+				m_ANNs.clear();
+				m_canalPosition.clear();
+				m_fileData.seekp(0, ios::beg);
+
+				m_fileData.close();
+				m_fileData.open(m_filePathData, ios::in | ios::out | ios::binary | ios::trunc);
+
+				m_fileIndex.close();
+				m_fileIndex.open(m_filePathIndex, ios::out | ios::binary | ios::trunc);
+
+			}
+
+
+			m_fileData.seekp(0, ios::end);
+			uint64_t curPos = m_fileData.tellp();
+			info.second = curPos;
+
+			std::stringstream ss;
+			boost::archive::binary_oarchive ar(ss, boost::archive::no_header);
+			ar << *pANN;
+
+			uint64_t length = ss.str().size();
+			assert(length > 0);
+
+			m_fileData.write((char*)(&curPos), sizeof(curPos));
+			m_fileData.write((char*)(&length), sizeof(length));
+			m_fileData << ss.rdbuf();
+			m_fileData.flush();
+
+			std::fstream::pos_type test = m_fileData.tellp();
+			assert(test == curPos + length + sizeof(curPos) + sizeof(length));
+		}
+
+		m_ANNs.push_back(pANN);//canal only add in memory
+		m_canalPosition[canal] = info;
+
+		//appSync.Leave();
+
+		return info;
+	}
+
+
+	CApproximateNearestNeighborPtr CSearchOptimisation::GetCanal(int64_t canal)const
+	{
+		CSearchOptimisation& me = const_cast<CSearchOptimisation&>(*this);
+
+		CCanalPositionMap::iterator it = me.m_canalPosition.find(canal);
+		assert(it != m_canalPosition.end());
+
+		if (it == m_canalPosition.end())
+			return CApproximateNearestNeighborPtr();
+
+
+		const std::pair<int64_t, uint64_t>& info = it->second;
+		assert(info.first >= 0 && info.first < int64_t(m_ANNs.size()));
+		if (m_ANNs[info.first].get() == NULL)
+		{
+			assert(m_fileData.is_open());//if the file is not open, the canal must be loaded in memory
+
+			me.m_ANNs[info.first].reset(new CApproximateNearestNeighbor);
+
+			uint64_t curPos = 0;
+			uint64_t length = 0;
+
+			me.m_fileData.seekg(info.second, ios::beg);
+			me.m_fileData.read((char*)(&curPos), sizeof(curPos));
+			me.m_fileData.read((char*)(&length), sizeof(length));
+			assert(length > 0);
+			if (curPos == info.second && length > 0)
+			{
+				string buffer;
+				buffer.resize(length);
+				me.m_fileData.read((char*)(&buffer[0]), length);
+
+
+				// * Create your string stream.
+				// * Get the stringbuffer from the stream and set the vector as it source.
+
+				std::stringstream       localStream(buffer);
+
+				try
+				{
+					//load this canal
+					boost::archive::binary_iarchive ar(localStream, boost::archive::no_header);
+					ar >> *me.m_ANNs[info.first];
+				}
+				catch (...)
+				{
+					me.m_ANNs[info.first].reset();
+					me.m_canalPosition.erase(it);
+				}
+			}
+			else
+			{
+				me.m_ANNs[info.first].reset();//
+				me.m_canalPosition.erase(it);
+			}
+		}
+
+
+		return m_ANNs[info.first];
+	}
+
+
+	ERMsg CSearchOptimisation::DeleteOptimization(const std::string& filePath)
+	{
+		ERMsg msg;
+
+		if (IsOpen())
+			Close();
+
+		clear();
+
+		string indexFilePath = filePath + "Index";
+		if (FileExists(indexFilePath))
+			msg += RemoveFile(indexFilePath);
+
+		if (FileExists(filePath))
+			msg += RemoveFile(filePath);
+
+
+		return msg;
+	}
+
+
+	//**************************************************************************************************************************
+	const int CWeatherDatabaseOptimization::VERSION = 1;
+
+	CWeatherDatabaseOptimization::CWeatherDatabaseOptimization()
+	{
+		m_time = -1;
+	}
+
+	void CWeatherDatabaseOptimization::clear()
+	{
+		CLocationVector::clear();
+
+		m_filePath.clear();
+		m_time = -1;
+
+		m_bSubDir = false;
+		m_years.clear();
+		m_filesStamps.clear();
+		m_filesSection.clear();
+
+		m_ANNs.Close();
+	}
+
+	void CWeatherDatabaseOptimization::push_back(const CLocation& in)
+	{
+		CLocationVector::push_back(in);
+	}
+
+	void CWeatherDatabaseOptimization::set(size_t i, const CLocation& in)
+	{
+		if (in != CLocationVector::at(i))
+		{
+			string oldFileName = at(i).GetDataFileName();
+			string newFileName = in.GetDataFileName();
+			if (newFileName != oldFileName)
+			{
+				CWeatherFileSectionIndex::const_iterator it1 = m_filesSection.find(oldFileName);
+				if (it1 != m_filesSection.end())
+				{
+					CWeatherYearSectionMap tmp = it1->second;
+					m_filesSection.erase(it1);
+					m_filesSection[newFileName] = tmp;
+				}
+
+				CFileStampMap::const_iterator it2 = m_filesStamps.find(oldFileName);
+				if (it2 != m_filesStamps.end())
+				{
+					std::time_t tmp = it2->second;
+					m_filesStamps.erase(it2);
+					m_filesStamps[newFileName] = tmp;
+
+				}
+			}
+
+			CLocationVector::at(i) = in;
+		}
+	}
+
+	void CWeatherDatabaseOptimization::erase(size_t i)
+	{
+		string fileName = at(i).GetDataFileName();
+		CWeatherFileSectionIndex::const_iterator it1 = m_filesSection.find(fileName);
+		if (it1 != m_filesSection.end())
+			m_filesSection.erase(it1);
+
+		CFileStampMap::const_iterator it2 = m_filesStamps.find(fileName);
+		if (it2 != m_filesStamps.end())
+			m_filesStamps.erase(it2);
+
+
+		CLocationVector::erase(begin() + i);
+	}
+
+	ERMsg CWeatherDatabaseOptimization::Load(const std::string& filePath)
+	{
+		ERMsg msg;
+
+
+		ifStream file;
+		msg = file.open(filePath, ios::in | ios::binary);
+		if (msg)
+		{
+			try
+			{
+				boost::archive::binary_iarchive ar(file, boost::archive::no_header);
+
+				int version = 0;
+				ar >> version;
+				if (version == VERSION)
+				{
+					string DBExtension;
+
+					ar >> DBExtension;
+					ar >> m_bSubDir;
+					ar >> (*this);
+
+					m_filePath = filePath;
+					SetFileExtension(m_filePath, DBExtension);
+				}
+			}
+			catch (...)
+			{
+				//do nothing and recreate optimization
+			}
+
+			file.close();
+
+
+		}
+
+		return msg;
+	}
+
+	ERMsg CWeatherDatabaseOptimization::Save(const std::string& filePath)
+	{
+		ERMsg msg;
+
+		ofStream file;
+		msg = file.open(filePath, ios::out | ios::binary);
+		if (msg)
+		{
+			assert(!m_filePath.empty());
+			// write map instance to archive
+			boost::archive::binary_oarchive ar(file, boost::archive::no_header);
+			string DBExtension = GetFileExtension(m_filePath);
+
+			ar << VERSION;
+			ar << DBExtension;
+			ar << m_bSubDir;
+			ar << (*this);
+		}
+
+		return msg;
+	}
+
+
+	ERMsg CWeatherDatabaseOptimization::LoadFromXML(const std::string& filePath, const string& rooName, const std::string& hdrExt)
+	{
+		assert(FileExists(filePath));//save file before first open
+
+		ERMsg msg;
+
+		clear();
+
+
+		try
+		{
+            pugi::xml_document doc;
+            doc.load_file(filePath.c_str());
+
+
+            boost::iequals(filePath, "Élévation");
+
+            if (IsNormalsDB(filePath))
+            {
+                string str1 = doc.root().attribute("start").as_string();
+                string str2 = doc.root().attribute("end").as_string();
+                if (!str1.empty() && !str2.empty())
+                {
+                    int year1 = stoi(str1);
+                    int year2 = stoi(str2);
+                    if (year1 > INVLID_YEAR && year2 > INVLID_YEAR)
+                    {
+                        m_years.insert(year1);
+                        m_years.insert(year2);
+                    }
+                }
+            }
+
+            string subDir = doc.root().attribute("subdir").as_string();
+
+
+            //don't update it now. Update when open next time
+            m_filePath = filePath;
+            m_bSubDir = !subDir.empty() ? stoi(subDir) : false;
+
+            //load csv format... remove xml later
+            string CSVFilePath = filePath;
+            SetFileExtension(CSVFilePath, hdrExt);
+            msg = CLocationVector::Load(CSVFilePath);
+
+            if (msg)
+                m_time = GetFileStamp(CSVFilePath);
+
+		}
+		catch(pugi::xpath_exception& e)
+		{
+		    msg.ajoute(e.what());
+            msg.ajoute("Error reading database: " + filePath);
+		}
+		catch(std::exception& e)
+		{
+            msg.ajoute(e.what());
+            msg.ajoute("Error reading database: " + filePath);
+		}
+
+
+
+
+
+
+		return msg;
+	}
+
+
+	ERMsg CWeatherDatabaseOptimization::SaveAsXML(const std::string& filePath, const std::string& subDir, const string& rootName, short version, const std::string& hdrExt)const
+	{
+		ERMsg msg;
+
+
+		assert(false);
+
+		//		zen::XmlDoc doc(rootName);
+		//		doc.setEncoding("Windows-1252");
+		//
+		//		zen::writeStruc(*this, doc.root());
+		//		doc.root().setAttribute("version", version);
+		//		if (!m_years.empty())
+		//		{
+		//			doc.root().setAttribute("begin", to_string(*m_years.begin()));
+		//			doc.root().setAttribute("end", to_string(*m_years.rbegin()));
+		//		}
+		//
+		//		doc.root().setAttribute("subdir", subDir.empty() ? "0" : "1");
+		//		msg = save(doc, filePath);
+		//		if (msg)
+		//		{
+		//			CWeatherDatabaseOptimization& me = const_cast<CWeatherDatabaseOptimization&>(*this);
+		//			me.m_filePath = filePath;
+		//			me.m_bSubDir = !subDir.empty();
+		//
+		//			save also in csv format... remove xml later
+		//			string CSVFilePath = filePath;
+		//			SetFileExtension(CSVFilePath, hdrExt);
+		//			msg = CLocationVector::Save(CSVFilePath, ',');
+		//		}
+		//
+		//
+		return msg;
+	}
+
+
+	//ERMsg CWeatherDatabaseOptimization::SaveAsCSV(const std::string& filePath, const std::string& subDir, const string& rootName, short version)const
+	//{
+	//	ERMsg msg = Save(filePath);
+	//
+	//	//doc.root().setAttribute("version", version);
+	//	//doc.root().setAttribute("begin", to_string(*m_years.begin()));
+	//	//doc.root().setAttribute("end", to_string(*m_years.rbegin()));
+	//	//doc.root().setAttribute("subdir", subDir.empty() ? "0" : "1");
+	//
+	//	if (msg)
+	//	{
+	//		CWeatherDatabaseOptimization& me = const_cast<CWeatherDatabaseOptimization&>(*this);
+	//		me.m_filePath = filePath;
+	//		me.m_bSubDir = !subDir.empty();
+	//	}
+	//
+	//
+	//	return msg;
+	//}
+
+
+
+
+	CLocationVector CWeatherDatabaseOptimization::GetStations(const CSearchResultVector& results)const
+	{
+		CLocationVector stations(results.size());
+
+		for (size_t i = 0; i < results.size(); i++)
+		{
+			assert(results[i].m_index >= 0 && results[i].m_index < size());
+			stations[i] = at(results[i].m_index);
+		}
+
+		return stations;
+	}
+
+
+	std::vector<std::string> CWeatherDatabaseOptimization::GetDataFiles()const
+	{
+		return GetWeatherDBDataFileList(m_filePath, *this);
+	}
+
+	ERMsg CWeatherDatabaseOptimization::GetDataFiles(CFileInfoVector& filesInfo, bool bToUpdateOnly, CCallback& callback)const
+	{
+		ERMsg msg;
+
+		std::vector<std::string> filesList = GetDataFiles();
+
+		callback.PushTask("Database verification.", filesList.size());
+
+		filesInfo.reserve(filesList.size());
+		for (size_t i = 0; i < filesList.size() && msg; i++)
+		{
+			CFileInfo info;
+			msg = GetFileInfo(filesList[i], info);
+
+			if (msg && (!bToUpdateOnly || !IsDataFileUpToDate(info)))
+				filesInfo.push_back(info);
+
+			msg += callback.StepIt();
+		}
+
+		callback.PopTask();
+		return msg;
+	}
+
+	ERMsg CWeatherDatabaseOptimization::UpdateDataFiles(const std::string& filePath)
+	{
+		ERMsg msg;
+		if (FileExists(filePath))
+		{
+			m_filesStamps[GetFileName(filePath)] = GetFileStamp(filePath);
+		}
+
+		return msg;
+	}
+
+	ERMsg CWeatherDatabaseOptimization::UpdateDataFilesYearsIndex(const std::string& filePath, const CFileInfoVector& list, CCallback& callback)
+	{
+		ERMsg msg;
+
+		callback.PushTask("Weather database optimisation files update", list.size());
+
+		if (FileExists(filePath))
+			msg = m_filesSection.Load(filePath);
+
+		for (CFileInfoVector::const_iterator it = list.begin(); it != list.end() && msg; it++)
+		{
+			msg = m_filesSection.Update(it->m_filePath, callback);
+			if (msg)
+				m_filesStamps[GetFileName(it->m_filePath)] = it->m_time;
+
+			msg += callback.StepIt();
+		}
+
+
+		if (msg)
+			msg = m_filesSection.Save(filePath);
+
+		if (msg)
+		{
+			//update years
+			std::set<int> tmp = m_filesSection.GetYears();
+			m_years.insert(tmp.begin(), tmp.end());
+		}
+
+		callback.PopTask();
+		return msg;
+	}
+
+	CWVariables CWeatherDatabaseOptimization::GetWVariables(size_t i, const std::set<int>& years, bool bForAllYears)const
+	{
+		assert(i < size());
+		CWVariables WVars;
+
+
+
+		CWeatherFileSectionIndex::const_iterator it1 = m_filesSection.find(at(i).GetDataFileName());
+		assert(it1 != m_filesSection.end());
+		if (it1 != m_filesSection.end() && !it1->second.empty())
+		{
+			if (bForAllYears)
+				WVars.set();
+
+			if (years.empty())
+			{
+				for (CWeatherYearSectionMap::const_iterator it2 = it1->second.begin(); it2 != it1->second.end(); it2++)
+				{
+					if (bForAllYears)
+						WVars &= it2->second.m_nbRecords.GetVariables();
+					else
+						WVars |= it2->second.m_nbRecords.GetVariables();
+
+				}
+			}
+			else
+			{
+				for (std::set<int>::const_iterator itY = years.begin(); itY != years.end(); itY++)
+				{
+					CWeatherYearSectionMap::const_iterator it2 = it1->second.find(*itY);
+					if (it2 != it1->second.end())
+					{
+						if (bForAllYears)
+							WVars &= it2->second.m_nbRecords.GetVariables();
+						else
+							WVars |= it2->second.m_nbRecords.GetVariables();
+
+					}
+				}
+			}
+		}
+
+		return WVars;
+	}
+
+	CWVariablesCounter CWeatherDatabaseOptimization::GetWVariablesCounter(size_t i, const std::set<int>& years)const
+	{
+		assert(i < size());
+		CWVariablesCounter WCounter;
+
+
+
+		CWeatherFileSectionIndex::const_iterator it1 = m_filesSection.find(at(i).GetDataFileName());
+		assert(it1 != m_filesSection.end());
+		if (it1 != m_filesSection.end() && !it1->second.empty())
+		{
+			if (years.empty())
+			{
+				for (CWeatherYearSectionMap::const_iterator it2 = it1->second.begin(); it2 != it1->second.end(); it2++)
+				{
+					WCounter += it2->second.m_nbRecords;
+				}
+			}
+			else
+			{
+				for (std::set<int>::const_iterator itY = years.begin(); itY != years.end(); itY++)
+				{
+					CWeatherYearSectionMap::const_iterator it2 = it1->second.find(*itY);
+					if (it2 != it1->second.end())
+					{
+						WCounter += it2->second.m_nbRecords;
+					}
+				}
+			}
+		}
+
+		return WCounter;
+	}
+	bool CWeatherDatabaseOptimization::CanalExists(int64_t canal)const
+	{
+		return m_ANNs.CanalExists(canal);
+	}
+
+
+	//void CWeatherDatabaseOptimization::CreateCanal(CWVariables filter, int year, bool bExcludeUnused, bool bUseElevation, bool bUseShoreDistance)
+	//{
+	//	int64_t canal= GetCanal(filter, year, bExcludeUnused, bUseElevation, bUseShoreDistance);
+
+
+	//	CLocationVector locations;
+	//	locations.reserve(size());
+	//	std::vector<int64_t> positions;
+	//	positions.reserve(size());
+
+	//	//build canal
+	//	for (CLocationVector::iterator it = begin(); it != end(); it++)
+	//	{
+	//		bool useIt = it->UseIt();
+	//		if (useIt || !bExcludeUnused)
+	//		{
+	//			size_t index = std::distance(begin(), it);
+	//			//bool bIncluded = (m_data[index].GetVariables()&filter) == filter;
+
+	//			CWVariables var = GetWVariables(index, { {year} });
+	//			bool bIncluded = (var&filter) == filter;
+
+
+	//			if (bIncluded)
+	//			{
+	//				CLocation pt = *it;//removel
+	//				pt.m_siteSpeceficInformation.clear();//remove ssi for ANN
+	//				pt.SetSSI(CLocation::GetDefaultSSIName(CLocation::SHORE_DIST), it->GetSSI(CLocation::GetDefaultSSIName(CLocation::SHORE_DIST)));//but keep ShoreDistance
+	//				locations.push_back(pt);
+	//				positions.push_back(index);
+	//			}
+	//		}//use it
+	//	}
+
+
+	//	//by optimization, add the canal event if they are empty
+	//	CApproximateNearestNeighborPtr pANN(new CApproximateNearestNeighbor);
+	//	pANN->set(locations, bUseElevation, bUseShoreDistance, positions);
+	//	//CWeatherDatabaseOptimization& zop = const_cast<CWeatherDatabaseOptimization&>(m_zop);
+	//	AddCanal(canal, pANN);
+	//}
+
+	void CWeatherDatabaseOptimization::AddCanal(int64_t canal, CApproximateNearestNeighborPtr pANN)const
+	{
+		//assert(!CanalExists(canal));
+
+		CWeatherDatabaseOptimization& me = const_cast<CWeatherDatabaseOptimization&>(*this);
+		me.m_ANNs.AddCanal(canal, pANN);
+	}
+
+	ERMsg CWeatherDatabaseOptimization::Search(const CLocation& pt, size_t nbPoint, CSearchResultVector& result, int64_t canal)const
+	{
+		ERMsg msg;
+
+		if (m_ANNs.CanalExists(canal))
+		{
+
+			std::lock_guard<std::mutex> guard(m_mutex);
+			CApproximateNearestNeighborPtr pANN = m_ANNs.GetCanal(canal);
+
+
+
+			if (pANN.get() != NULL)
+			{
+				msg = pANN->search(pt, nbPoint, result);
+				for (size_t i = 0; i < result.size(); i++)
+				{
+					result[i].m_location = at(result[i].m_index);
+					//When elevation and shore is not used, these variables is not computed, so we have to set it here
+					//result[i].m_distance = pt.GetDistance(result[i].m_location, false, false);
+					//result[i].m_deltaElev = result[i].m_location.m_elev - pt.m_elev;
+					//result[i].m_deltaShore = result[i].m_location.GetShoreDistance() - pt.GetShoreDistance();
+					//result[i].m_deltaElev = pt.GetDistance(result[i].m_location, false);
+				}
+			}
+			else
+			{
+				msg.ajoute("Invalid optimization files for search. Delete optimizations files and retry.");
+			}
+		}
+
+
+		return msg;
+	}
+
+	ERMsg CWeatherDatabaseOptimization::OpenSearch(const std::string& filePath1, const std::string& filePath2)const
+	{
+		ERMsg msg;
+		std::lock_guard<std::mutex> guard(m_mutex);
+		//by RSA temporary desactiva optimisation of normals
+		msg = const_cast<CWeatherDatabaseOptimization*>(this)->m_ANNs.Open(filePath1, filePath2);
+		//m_mutex.Leave();
+		return msg;
+	}
+
+	void CWeatherDatabaseOptimization::CloseSearch()const
+	{
+		std::lock_guard<std::mutex> guard(m_mutex);
+		CWeatherDatabaseOptimization& me = const_cast<CWeatherDatabaseOptimization&>(*this);
+		me.m_ANNs.Close();
+	}
+
+	const std::set<int> CWeatherDatabaseOptimization::GetYears(size_t index)const
+	{
+		if (!m_filesSection.empty())
+		{
+			string fileName = at(index).GetDataFileName();
+			CWeatherFileSectionIndex::const_iterator it = m_filesSection.find(fileName);
+			assert(it != m_filesSection.end());
+			if (it != m_filesSection.end())
+				return it->second.GetYears();
+		}
+
+		return std::set<int>();
+
+	}
+
+
+	std::ostream& CWeatherDatabaseOptimization::operator << (std::ostream& stream)const
+	{
+		CLocationVector::operator << (stream);
+		stream << m_filesSection;
+
+
+		size_t s = m_years.size();
+		stream.write((char*)(&s), sizeof(s));
+		for (auto it = m_years.begin(); it != m_years.end(); it++)
+		{
+			int year = *it;
+			stream.write((char*)(&year), sizeof(year));
+		}
+
+
+		return stream;
+	}
+
+	std::istream& CWeatherDatabaseOptimization::operator >> (std::istream& stream)
+	{
+		CLocationVector::operator >> (stream);
+		stream >> m_filesSection;
+
+		size_t s = 0;
+		stream.read((char*)(&s), sizeof(s));
+		for (size_t i = 0; i < s; i++)
+		{
+			int year = 0;
+			stream.read((char*)(&year), sizeof(year));
+			m_years.insert(year);
+		}
+
+		assert(m_years.size() == s);
+
+		return stream;
+	}
+
+
+}
