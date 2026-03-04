@@ -27,7 +27,7 @@ namespace WBSF
 
 	CSPEIModel::CSPEIModel() 
 	{
-		// initialise your variable here (optionnal)
+		// initialize your variable here (optional)
 		NB_INPUT_PARAMETER=2;
 		VERSION = "1.0.2 (2020)";
 

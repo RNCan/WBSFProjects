@@ -36,7 +36,7 @@ namespace BioSIM_APITest
   // IMPORTANT
   TEST(BioSIMCoreTests, Test01_GetNormals)
 	{
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -48,7 +48,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test02_WeatherGenerator)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2005-2010.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -60,7 +60,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test03_Model)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2005-2010.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGeneratorAPI initialization should return Success";
@@ -93,7 +93,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test05_WeatherGenerator_CanadaUSA_1980_2020_Init)
   {
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Canada-USA 1980-2020.DailyDB";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Canada-USA 1980-2020.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -101,7 +101,7 @@ namespace BioSIM_APITest
 
   TEST(BioSIMCoreTests, Test06_ClimaticModel_Validation)
   {
-      std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+      std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB";
       WBSF::CWeatherGeneratorAPI weatherGen("");
       std::string msg = weatherGen.Initialize(options);
       EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -137,12 +137,12 @@ namespace BioSIM_APITest
   TEST(BioSIMCoreTests, Test07_WeatherGenerator_Gradients)
   {    
     // Here we test that running the WG with a specific case where the number of stations is lower than expected
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
 
-    options = "Latitude=49.84446273509617&Longitude=-71.92627622323562&Elevation=326.58317098134694&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2000&Last_year=2001&Replications=1";
+    options = "nb_nearest_neighbor=50&Latitude=49.84446273509617&Longitude=-71.92627622323562&Elevation=326.58317098134694&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2000&Last_year=2001&Replications=1";
     WBSF::CTeleIO WGout = weatherGen.Generate(options);
     EXPECT_NE(WGout.m_msg, "Success") << "Generate should not return Success";
   }
@@ -150,7 +150,7 @@ namespace BioSIM_APITest
   TEST(BioSIMCoreTests, Test08_WeatherGenerator_Run_Twice_Produces_Same_Results)
   {    
     // Here we test that running the WG twice in Source=FromObservation mode with the same options produces the same results. 
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2005-2010.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
@@ -169,7 +169,7 @@ namespace BioSIM_APITest
   TEST(BioSIMCoreTests, Test09_WeatherGeneratorRequest)
   {    
     // Here we test that running the WG with a specific case where the number of stations is lower than expected
-    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB.bin.gz";
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2000-2005.DailyDB";
     WBSF::CWeatherGeneratorAPI weatherGen("");
     std::string msg = weatherGen.Initialize(options);
     EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";

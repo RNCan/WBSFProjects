@@ -73,7 +73,7 @@ namespace WBSF
 			double gddwyr = DD5.GetStat(CDegreeDays::S_DD, p1)[SUM];
 			double gddcum = DD5.GetStat(CDegreeDays::S_DD, p2)[SUM];
 
-			CTPeriod p3(CTRef( year, MARCH, DAY_01, 0,TM), CTRef( year, JUNE, DAY_31, 23,TM));
+			CTPeriod p3(CTRef( year, MARCH, DAY_01, 0,TM), CTRef( year, JUNE, DAY_30, 23,TM));
 			double pptSummer = m_weather[y](H_PRCP, p3)[SUM] / 10;//in cm
 
 			//conversion from mm to cm

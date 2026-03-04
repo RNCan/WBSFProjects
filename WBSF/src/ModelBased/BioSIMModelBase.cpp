@@ -414,6 +414,10 @@ const std::string& CBioSIMModelBase::GetFileData(const std::string& speciesFileP
 
 const std::string& CBioSIMModelBase::GetFileData(int index)const
 {
+    static const std::string EMPTY_FILE_DATA_NAME;
+    if (GetStaticDataStream().m_files.empty())//When the extra data doesn't exist. return an empty string name;
+        return EMPTY_FILE_DATA_NAME;
+
     return GetStaticDataStream().GetFileData(index);
 }
 

@@ -15,7 +15,7 @@ namespace BioSIM_APITest
   protected:
     void SetUp() override
     {
-      std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB.bin.gz&Daily=testData/Weather/Daily/Demo 2008-2010.DailyDB.bin.gz";
+      std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB&Daily=testData/Weather/Daily/Demo 2005-2010.DailyDB";
       std::string msg = m_WeatherGen.Initialize(options);
       EXPECT_EQ(msg, "Success") << "WeatherGeneratorAPI initialization should return Success";
     }
@@ -34,7 +34,13 @@ namespace BioSIM_APITest
       std::string variables = model.GetWeatherVariablesNeeded();
       std::string parameters = model.GetDefaultParameters();
       std::string compress = "0";
-      options = "Compress=" + compress + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=41.73333333&Longitude=-111.8&Elevation=120&First_year=2008&Last_year=2010&Replications=1";
+      options = "Compress=" + compress + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=46.76&Longitude=-71.75&Elevation=84";
+
+      if (modelName == "PlantHardinessCanada.mdl" || modelName == "PlantHardinessUSA.mdl")
+          options += "&source=FromNormals&nb_years=30&Replications=1";
+      else
+          options += "&source=FromObservation&First_year=2008&Last_year=2010&Replications=1";
+
       WBSF::CTeleIO WGout = m_WeatherGen.Generate(options);
       EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
 
@@ -85,7 +91,7 @@ namespace BioSIM_APITest
   {
     ExecuteModel("ClimateMoistureIndex(Monthly).mdl");
   }
-
+  
   TEST_F(BioSIM_ModelTest, Test09_ClimateMoistureIndex_Annual)
   {
     ExecuteModel("ClimateMoistureIndex(Annual).mdl");
@@ -338,7 +344,8 @@ namespace BioSIM_APITest
 
   TEST_F(BioSIM_ModelTest, Test59_StandardisedPrecipitationEvapotranspirationIndex)
   {
-    ExecuteModel("StandardisedPrecipitationEvapotranspirationIndex.mdl");
+    ExecuteModel("StdPrcpETIndex.mdl");
+    ExecuteModel("StdPrcpETIndexEx.mdl");
   }
 
   TEST_F(BioSIM_ModelTest, Test60_TminTairTmax_Daily)
