@@ -16,12 +16,12 @@ using namespace WBSF::HOURLY_DATA;
 namespace WBSF
 {
 	//this line link this model with the EntryPoint of the DLL
-	static const bool bRegistred = CModelFactory::RegisterModel(CSnowMelt::CreateObject);
+	static const bool bRegistred = CModelFactory::RegisterModel(CSnowMeltModel::CreateObject);
 	
 	enum TMonthlyStat{ O_SWE_START, O_SWE_END, O_SNOWDIFF, O_PRCP, O_RUNOFF, NB_MONTHLY_OUTPUTS};
 
 	//Contructor
-	CSnowMelt::CSnowMelt()
+	CSnowMeltModel::CSnowMeltModel()
 	{
 		//specify the number of input parameter
 		NB_INPUT_PARAMETER = 0;
@@ -29,11 +29,11 @@ namespace WBSF
 		VERSION = "1.0.0 (2019)";
 	}
 
-	CSnowMelt::~CSnowMelt()
+	CSnowMeltModel::~CSnowMeltModel()
 	{}
 
 	//This method is call to load your parameter in your variable
-	ERMsg CSnowMelt::ProcessParameters(const CParameterVector& parameters)
+	ERMsg CSnowMeltModel::ProcessParameters(const CParameterVector& parameters)
 	{
 		ERMsg msg;
 
@@ -42,7 +42,7 @@ namespace WBSF
 
 	
 
-	ERMsg CSnowMelt::OnExecuteMonthly()
+	ERMsg CSnowMeltModel::OnExecuteMonthly()
 	{
 		ERMsg msg;
 

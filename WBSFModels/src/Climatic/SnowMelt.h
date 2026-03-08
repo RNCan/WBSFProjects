@@ -6,13 +6,13 @@
 namespace WBSF
 {
 
-	class CSnowMelt : public CBioSIMModelBase
+	class CSnowMeltModel : public CBioSIMModelBase
 	{
 	public:
 
 
-		CSnowMelt();
-		virtual ~CSnowMelt();
+		CSnowMeltModel();
+		virtual ~CSnowMeltModel();
 
 		virtual ERMsg ProcessParameters(const CParameterVector& parameters);
 
@@ -20,7 +20,7 @@ namespace WBSF
 		virtual ERMsg OnExecuteMonthly();
 		//virtual ERMsg OnExecuteDaily();
 		//virtual ERMsg OnExecuteHourly();
-		
-		static CBioSIMModelBase* CreateObject(){ return new CSnowMelt; }
+
+		static CBioSIMModelBase* CreateObject(){ return new CSnowMeltModel; }
 	};
 }
