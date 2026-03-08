@@ -60,7 +60,8 @@
     },
 	{
       "name": "vs2022-ci",
-      "configurePreset": "vs2022-ci"
+      "configurePreset": "vs2022-ci",
+	  "configuration": "Release"
     },
     {
       "name": "linux-debug",
@@ -80,6 +81,7 @@
     {
       "name": "vs2022-ci",
       "configurePreset": "vs2022-ci",
+	  "configuration": "Release",
       "output": { "outputOnFailure": true }
     },
     {
