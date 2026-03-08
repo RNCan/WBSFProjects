@@ -29,3 +29,5 @@ target_link_libraries(WBSFTest PUBLIC
 	WBSFWeatherBased
 	BioSIM_API
 )
+
+add_test(NAME WBSFTest COMMAND WBSFTest)
