@@ -18,6 +18,8 @@ if(UNIX AND NOT APPLE)
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 
+enable_testing()
+
 # Add subdirectories (order matters: core first)
 add_subdirectory(WBSF)
 add_subdirectory(WBSFModels)

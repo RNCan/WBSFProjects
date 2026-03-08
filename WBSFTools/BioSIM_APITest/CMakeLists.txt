@@ -133,6 +133,8 @@ set(ALL_MODEL_TARGETS
 	YellowheadedSpruceSawfly
 )
 
+add_test(NAME BioSIM_APITest COMMAND BioSIM_APITest)
+
 add_dependencies(BioSIM_APITest ${ALL_MODEL_TARGETS})
 
 add_custom_command(TARGET BioSIM_APITest POST_BUILD
