@@ -43,3 +43,8 @@ jobs:
       # Build
       - name: Build
         run: cmake --build --preset=${{ matrix.build-preset }}
+
+      # Run unit tests
+      - name: Run unit tests
+        run: ctest --preset=${{ matrix.preset }}
+        
