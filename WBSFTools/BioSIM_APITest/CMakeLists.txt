@@ -133,7 +133,7 @@ set(ALL_MODEL_TARGETS
 	YellowheadedSpruceSawfly
 )
 
-add_test(NAME BioSIM_APITest COMMAND BioSIM_APITest)
+add_test(NAME BioSIM_APITest COMMAND BioSIM_APITest WORKING_DIRECTORY $<TARGET_FILE_DIR:BioSIM_APITest>)
 
 add_dependencies(BioSIM_APITest ${ALL_MODEL_TARGETS})
 
