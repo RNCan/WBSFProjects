@@ -18,6 +18,7 @@ add_library(SoilMoistureIndex SHARED
 )
 
 target_link_libraries(SoilMoistureIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -43,6 +44,7 @@ add_library(SoilMoistureIndexQL SHARED
 )
 
 target_link_libraries(SoilMoistureIndexQL PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

@@ -18,6 +18,7 @@ add_library(ForestTentCaterpillar SHARED
 )
 
 target_link_libraries(ForestTentCaterpillar PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

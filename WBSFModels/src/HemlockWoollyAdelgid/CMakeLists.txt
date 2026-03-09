@@ -17,6 +17,7 @@ add_library(HemlockWoollyAdelgidColdTolerance SHARED
 )
 
 target_link_libraries(HemlockWoollyAdelgidColdTolerance PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	
@@ -41,6 +42,7 @@ add_library(HemlockWoollyAdelgidPhenology SHARED
 )
 
 target_link_libraries(HemlockWoollyAdelgidPhenology PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

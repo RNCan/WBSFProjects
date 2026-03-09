@@ -18,6 +18,7 @@ add_library(BiophysicalSiteIndicesEcoloap SHARED
 )
 
 target_link_libraries(BiophysicalSiteIndicesEcoloap PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

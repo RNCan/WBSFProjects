@@ -18,6 +18,7 @@ target_include_directories(ActiaInterruptaLib PUBLIC
 )
 
 target_link_libraries(ActiaInterruptaLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 )
 
@@ -41,6 +42,7 @@ add_library(ActiaInterruptaBiology SHARED
 )
 
 target_link_libraries(ActiaInterruptaBiology PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

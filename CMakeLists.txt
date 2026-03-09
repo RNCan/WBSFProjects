@@ -22,6 +22,10 @@ enable_testing()
 
 # Add subdirectories (order matters: core first)
 add_subdirectory(WBSF)
+# BioSIM_API must be defined before WBSFModels so that plugin SOs can link
+# against it (shared) instead of duplicating the WBSF static libraries.
+# Duplicate static globals in multiple SOs cause double-free at process exit.
+add_subdirectory(WBSFTools/BioSIM_API)
 add_subdirectory(WBSFModels)
 add_subdirectory(WBSFTools)
 

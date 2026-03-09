@@ -18,6 +18,7 @@ add_library(LaricobiusNigrinus SHARED
 )
 
 target_link_libraries(LaricobiusNigrinus PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

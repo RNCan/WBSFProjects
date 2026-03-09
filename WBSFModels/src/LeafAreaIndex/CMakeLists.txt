@@ -18,6 +18,7 @@ add_library(LeafAreaIndex SHARED
 )
 
 target_link_libraries(LeafAreaIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

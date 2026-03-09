@@ -17,6 +17,7 @@ add_library(TranosemaLib STATIC
 )
 
 target_link_libraries(TranosemaLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

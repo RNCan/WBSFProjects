@@ -18,6 +18,7 @@ add_library(Solar SHARED
 )
 
 target_link_libraries(Solar PUBLIC
+  BioSIM_API
   WBSFBasic
   WBSFModelBased
   WBSFWeatherBased

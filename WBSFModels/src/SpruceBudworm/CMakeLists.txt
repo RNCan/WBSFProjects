@@ -23,6 +23,7 @@ add_library(SpruceBudwormLib STATIC
 )
 
 target_link_libraries(SpruceBudwormLib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

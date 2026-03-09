@@ -18,6 +18,7 @@ add_library(StdPrcpETIndex SHARED
 )
 
 target_link_libraries(StdPrcpETIndex PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

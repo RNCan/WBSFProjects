@@ -1,6 +1,6 @@
 //******************************************************************************
 //  project:		Weather-based simulation framework (WBSF)
-//	Programmer:     Rémi Saint-Amant
+//	Programmer:     Rï¿½mi Saint-Amant
 //
 //  It under the terms of the GNU General Public License as published by
 //     the Free Software Foundation
@@ -47,10 +47,10 @@ public:
 };
 
 //typedef std::vector<CCallbackTask> CCallbackTaskStack;
-class CCallbackTaskStack : public std::stack < CCallbackTask >
+class CCallbackTaskStack : public std::stack<CCallbackTask, std::vector<CCallbackTask>>
 {
 public:
-    using std::stack<CCallbackTask>::c; // expose the container
+    using std::stack<CCallbackTask, std::vector<CCallbackTask>>::c; // expose the container
 
     CCallbackTask& back()
     {

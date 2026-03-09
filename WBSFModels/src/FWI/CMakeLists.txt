@@ -18,6 +18,7 @@ add_library(FWILib STATIC
 )
 
 target_link_libraries(FWILib PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased
@@ -112,6 +113,7 @@ add_library(SummerMoisture SHARED
 )
 
 target_link_libraries(SummerMoisture PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

@@ -18,6 +18,7 @@ add_library(EuropeanElmScale SHARED
 )
 
 target_link_libraries(EuropeanElmScale PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

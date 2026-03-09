@@ -16,6 +16,7 @@ add_library(Bagworm SHARED
 )
 
 target_link_libraries(Bagworm PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased	

@@ -18,6 +18,7 @@ add_library(SpottedLanternfly SHARED
 )
 
 target_link_libraries(SpottedLanternfly PUBLIC
+	BioSIM_API
 	WBSFBasic
 	WBSFModelBased
 	WBSFWeatherBased

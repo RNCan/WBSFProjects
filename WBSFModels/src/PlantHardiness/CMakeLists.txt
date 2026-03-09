@@ -18,6 +18,7 @@ add_library(PlantHardiness SHARED
 )
 
 target_link_libraries(PlantHardiness PUBLIC
+  BioSIM_API
   WBSFBasic
   WBSFModelBased
   WBSFWeatherBased
