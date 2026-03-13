@@ -3,7 +3,7 @@
     <Title>HWAPhenology</Title>
     <Version>1.0</Version>
     <ID/>
-    <EXE>HWA Phenology.dll</EXE>
+    <EXE>HemlockWoollyAdelgidPhenology.dll</EXE>
     <Behaviour>0</Behaviour>
     <Description/>
     <WindowRect>0 0 100 250</WindowRect>

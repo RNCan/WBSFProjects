@@ -393,4 +393,18 @@ namespace BioSIM_APITest
     ExecuteModel("YellowheadedSpruceSawfly.mdl");
   }
 
+  TEST_F(BioSIM_ModelTest, Test69_HWAColdTolerance_Annual)
+  {
+    ExecuteModel("HWAColdTolerance(Annual).mdl");
+  }
+
+  TEST_F(BioSIM_ModelTest, Test70_HWAColdTolerance_Daily)
+  {
+    ExecuteModel("HWAColdTolerance(Daily).mdl");
+  }
+
+  TEST_F(BioSIM_ModelTest, Test71_HWAPhenology)
+  {
+    ExecuteModel("HWAPhenology.mdl");
+  }
 }
