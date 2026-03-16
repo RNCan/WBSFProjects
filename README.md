@@ -22,10 +22,15 @@ On Linux :
 ```
 # Configuring
 ## Configuring with CMake (Windows & Linux)
-1. (Linux) Make sure the following packages are installed using command (on Ubuntu))
+1. Make sure the proper buildtools are installed
+
+On Linux (Ubuntu), use the following command:
+
 ```
 sudo apt-get install bison flex autoconf libtool
 ```
+
+On Windows, make sure the BuildTools 2022 are installed. Those can be installed using the Visual Studio 2022 installer. Download Visual Studio 2022, run the installer, and check the options related to the C++ BuildTools 2022.
 
 2. In the terminal, execute one of the following commands:
 
