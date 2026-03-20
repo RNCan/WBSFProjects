@@ -3,12 +3,27 @@
 #include <gtest/gtest.h>
 #include <filesystem>
 #include <fstream> 
+#include <sstream>
+#include <vector>
 
 #include "BioSIM_API.h"
 #include "BioSIM_APITest.h"
 #include "Basic/UtilStd.h"
 
 using namespace std;
+
+std::vector<std::string> splitStringStream(const std::string& str, char delimiter) 
+{
+  std::vector<std::string> tokens;
+  std::stringstream ss(str); // Create a stringstream from the input string
+  std::string token;
+
+  while (std::getline(ss, token, delimiter)) { // Read tokens until the delimiter is found
+      tokens.push_back(token);
+  }
+
+  return tokens;
+}
 
 namespace BioSIM_APITest
 {
@@ -26,9 +41,8 @@ namespace BioSIM_APITest
   // Override this to define how to tear down the environment.
   void BioSIMTestEnvironment::TearDown()
   {
-  }
+  }   
 
-  
 
   // IMPORTANT
   // The following integration test suite uses testData files that must be present in the working directory.  This data is automatically copied by a post-build command in the CMakeLists.txt file.
@@ -177,6 +191,68 @@ namespace BioSIM_APITest
     options = "Latitude=46&Longitude=-70&Elevation=300&compress=0&Variables=TN+T+TX+P+TD+H+WS+WD+R+Z+S+SD+SWE+WS2&Source=FromObservation&First_year=2000&Last_year=2003&Replications=1";
     WBSF::CTeleIO WGout = weatherGen.Generate(options);
     EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+  }
+
+  TEST(BioSIMCoreTests, Test10_SoilMoistureIndex_Validation)
+  {
+    std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB";
+    WBSF::CWeatherGeneratorAPI weatherGen("");
+    std::string msg = weatherGen.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "WeatherGenerator initialization should return Success";
+    
+    options = "Latitude=46.1&Longitude=-70.1&Elevation=300&compress=0&Variables=TN+T+TX+P&Source=FromNormals&nb_years=5&Replications=1";
+    WBSF::CTeleIO WGout = weatherGen.Generate(options);
+    EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
+
+    // execute SoilMoistureIndex(Annual).mdl
+    options = "model=SoilMoistureIndex(Annual).mdl";
+    WBSF::CModelExecutionAPI modelClim("");
+    msg = modelClim.Initialize(options);
+    EXPECT_EQ(msg, "Success") << "Model initialization should return Success";
+
+    // here we replace the year values in the TeleIO output from the WG to replicate what the API is doing
+    auto lines = splitStringStream(WGout.m_data, '\n');
+
+    std::stringstream ss;
+
+    for (auto line : lines)
+    {
+      auto fields = splitStringStream(line, ',');
+      if (fields[0] != "Year")
+        fields[0] = std::to_string(std::stoi(fields[0]) + 2007);
+
+      for (auto field = fields.begin(); field != fields.end(); ++field)
+      {
+        ss << *field;
+        if (std::next(field) == fields.end())
+          ss << "\n";
+        else
+          ss << ",";
+      }
+    }
+
+    WGout.m_data = ss.str();
+
+    options = "compress=0";
+    WBSF::CTeleIO ModelClimOut = modelClim.Execute(options, WGout);
+    EXPECT_EQ(ModelClimOut.m_msg, "Success") << "Execute should return Success";      
+
+    lines = splitStringStream(ModelClimOut.m_data, '\n');
+    for (auto line : lines)
+    {
+      auto fields = splitStringStream(line, ',');
+      if (fields[0] != "Year")
+      { // this is a data line
+        float SMImin = std::stof(fields[1]);
+        EXPECT_TRUE(SMImin >= 0.0f && SMImin <= 100.0f) << "SMImin value " << SMImin << " outside of expected range [0-100]";
+
+        float SMImean = std::stof(fields[2]);
+        EXPECT_TRUE(SMImean >= 0.0f && SMImean <= 100.0f) << "SMImean value " << SMImean << " outside of expected range [0-100]";
+
+        float SMImax = std::stof(fields[3]);
+        EXPECT_TRUE(SMImax >= 0.0f && SMImax <= 100.0f) << "SMImax value " << SMImax << " outside of expected range [0-100]";
+      }
+    }
   }
 }
 
