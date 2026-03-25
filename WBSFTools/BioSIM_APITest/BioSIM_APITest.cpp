@@ -193,6 +193,12 @@ namespace BioSIM_APITest
     EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
   }
 
+  bool is_leap_year(int year) 
+  {
+      // Return true if the year meets the leap year conditions
+      return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+  }
+
   TEST(BioSIMCoreTests, Test10_SoilMoistureIndex_Validation)
   {
     std::string options = "Normals=testData/Weather/Normals/World 1991-2020.NormalsDB";
@@ -218,8 +224,13 @@ namespace BioSIM_APITest
     for (auto line : lines)
     {
       auto fields = splitStringStream(line, ',');
+      bool bAdd29Feb = false;
       if (fields[0] != "Year")
-        fields[0] = std::to_string(std::stoi(fields[0]) + 2007);
+      {
+          fields[0] = std::to_string(std::stoi(fields[0])+2007);
+          if (is_leap_year(std::stoi(fields[0])) && std::stoi(fields[1]) == 2 && std::stoi(fields[2]) == 28)
+              bAdd29Feb = true;
+      }
 
       for (auto field = fields.begin(); field != fields.end(); ++field)
       {
@@ -229,6 +240,21 @@ namespace BioSIM_APITest
         else
           ss << ",";
       }
+      
+      if (bAdd29Feb)
+      {
+          fields[1] = "02";
+          fields[2] = "29";
+          for (auto field = fields.begin(); field != fields.end(); ++field)
+          {
+              ss << *field;
+              if (std::next(field) == fields.end())
+                  ss << "\n";
+              else
+                  ss << ",";
+          }
+      }
+
     }
 
     WGout.m_data = ss.str();
