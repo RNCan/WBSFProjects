@@ -37,7 +37,13 @@ SET(BIOSIM_INSTALL_BIN_DIRECTORY ${BIOSIM_INSTALL_DIRECTORY}/bin)
 install(FILES $<TARGET_FILE_DIR:BioSIM_API>/ DESTINATION ${BIOSIM_INSTALL_BIN_DIRECTORY})
 
 if (WIN32)
-install(FILES $<TARGET_LINKER_FILE:BioSIM_API>/ DESTINATION ${BIOSIM_INSTALL_DIRECTORY}/lib)
+  install(FILES $<TARGET_LINKER_FILE:BioSIM_API>/ DESTINATION ${BIOSIM_INSTALL_DIRECTORY}/lib)
+
+  # install PROJ runtime files - this is needed to allow setting the PROJ_LIB env variable to help the backend find proj.db 
+  # and avoid the "Warning 1: PROJ: proj_create_from_database: Cannot find proj.db" warning
+  install(DIRECTORY 
+    ${CMAKE_BINARY_DIR}/vcpkg_installed/x64-windows/share/proj
+    DESTINATION ${BIOSIM_INSTALL_BIN_DIRECTORY})
 endif()
 
 get_target_property(BioSIM_INCLUDES BioSIM_API INCLUDE_DIRECTORIES)
@@ -54,7 +60,6 @@ install(FILES
     ${WBSF_SOURCE_DIR}/ERMsg/Syenvmsg.h 
     ${WBSF_SOURCE_DIR}/ERMsg/Symessag.h 
     DESTINATION ${CMAKE_INSTALL_PREFIX}/include/Basic/ERMsg)
-
 
 #install all model files
 set(BIOSIM_INSTALL_BIN_MODELS_DIRECTORY ${BIOSIM_INSTALL_BIN_DIRECTORY}/Models)
