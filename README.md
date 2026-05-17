@@ -36,7 +36,7 @@ On Windows, make sure the BuildTools 2022 are installed. Those can be installed 
 
 On Windows:
 ```
-cmake --preset vs2022
+cmake --preset vs2022-ci
 ```
 On Linux - debug configuration:
 ```
@@ -56,7 +56,7 @@ In the terminal, execute one of the following commands:
 
 On Windows:
 ```
-cmake --build --preset vs2022
+cmake --build --preset vs2022-ci
 ```
 On Linux - debug configuration:
 ```
@@ -68,7 +68,7 @@ cmake --build --preset linux-release
 ```
 
 ## Build Artifacts
-Everything built using this method will go under the ./build/preset-name folder (vs2022, linux-debug or linux-release)
+Everything built using this method will go under the ./build/preset-name folder (vs2022, vs2022-ci, linux-debug or linux-release)
 
 For example, the WeatherGenerator executable will be built into ./build/vs2022/WBSFTools/WeatherGenerator/[Debug,Release].  CMake will automatically copy all needed dlls into the output build folder, except the Models DLLs.
 
@@ -81,7 +81,7 @@ In the terminal, execute one of the following commands:
 
 On Windows:
 ```
-cmake --build --preset vs2022 --target INSTALL
+cmake --build --preset vs2022-ci --target INSTALL
 ```
 On Linux - debug configuration:
 ```
