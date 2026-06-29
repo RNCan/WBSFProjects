@@ -1,7 +1,6 @@
 name: CMake Build
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -12,7 +11,7 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            preset: vs2022-ci
+            preset: vs2022
             build-preset: vs2022-ci
           - os: ubuntu-latest
             preset: linux-release
