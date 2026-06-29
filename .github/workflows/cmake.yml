@@ -48,5 +48,5 @@ jobs:
 
       # Run unit tests
       - name: Run unit tests
-        run: ctest --preset=${{ matrix.preset }}
+        run: ctest --preset=${{ matrix.build-preset }}
         
