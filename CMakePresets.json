@@ -73,7 +73,7 @@
     },
     {
       "name": "vs2022-ci",
-      "configurePreset": "vs2022-ci",
+      "configurePreset": "vs2022",
 	  "configuration": "Release",
       "output": { "outputOnFailure": true }
     },
