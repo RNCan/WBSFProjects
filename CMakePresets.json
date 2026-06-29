@@ -25,13 +25,6 @@
         "VCPKG_FEATURE_FLAGS": "manifests"
       }
     },
-	{
-      "name": "vs2022-ci",
-      "inherits": "vs2022",
-	  "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      }      
-    },
     {
       "name": "linux-release",
       "inherits": "base-preset",
@@ -60,7 +53,7 @@
     },
 	{
       "name": "vs2022-ci",
-      "configurePreset": "vs2022-ci",
+      "configurePreset": "vs2022",
 	  "configuration": "Release"
     },
     {
@@ -80,7 +73,7 @@
     },
     {
       "name": "vs2022-ci",
-      "configurePreset": "vs2022-ci",
+      "configurePreset": "vs2022",
 	  "configuration": "Release",
       "output": { "outputOnFailure": true }
     },
