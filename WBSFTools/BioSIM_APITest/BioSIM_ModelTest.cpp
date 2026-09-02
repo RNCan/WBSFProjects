@@ -24,22 +24,41 @@ namespace BioSIM_APITest
     {
     }
 
-    void ExecuteModel(const std::string& modelName)
+    void ExecuteModel(const std::string& modelName, bool fromObservations = true)
     {
       WBSF::CModelExecutionAPI model("");
       std::string options = "Model=" + modelName;
       std::string msg = model.Initialize(options);
       EXPECT_EQ(msg, "Success") << "ModelExecutionAPIinitialization should return Success";
 
+      std::string help = model.Help();
+      cout << help;
+
       std::string variables = model.GetWeatherVariablesNeeded();
       std::string parameters = model.GetDefaultParameters();
       std::string compress = "0";
       options = "Compress=" + compress + "&Variables=" + variables + "&ID=1&Name=Logan&Latitude=46.76&Longitude=-71.75&Elevation=84";
 
+      int nbResultingObservations = 0;
+
       if (modelName == "PlantHardinessCanada.mdl" || modelName == "PlantHardinessUSA.mdl")
+      {
           options += "&source=FromNormals&nb_years=30&Replications=1";
+          nbResultingObservations = 1;
+      }
       else
-          options += "&source=FromObservation&First_year=2008&Last_year=2010&Replications=1";
+      {
+          if (fromObservations) 
+              options += "&source=FromObservation&First_year=2008&Last_year=2010&Replications=1";
+          else 
+              options += "&source=FromNormals&nb_years=3&Replications=1";
+          if (modelName.find("Daily") != std::string::npos)
+              nbResultingObservations = 3 * 365 + 1;  // +1 since 2008 is a leap year
+          else if (modelName.find("Monthly") != std::string::npos)
+              nbResultingObservations = 3 * 12;
+          else if (modelName.find("Annual") != std::string::npos)
+              nbResultingObservations = 3;
+      }
 
       WBSF::CTeleIO WGout = m_WeatherGen.Generate(options);
       EXPECT_EQ(WGout.m_msg, "Success") << "Generate should return Success";
@@ -47,6 +66,17 @@ namespace BioSIM_APITest
       WBSF::CTeleIO modelOut = model.Execute("Compress=" + compress, WGout);
       EXPECT_EQ(modelOut.m_msg, "Success") << "Generate should return Success";
       std::string s = modelOut.m_data;      
+
+      std::stringstream ss(s);
+      std::string token;
+      std::vector<std::string> tokens;
+
+      // The third argument is the single-char delimiter
+      while (std::getline(ss, token, '\n')) {
+          tokens.push_back(token);
+      }
+
+      EXPECT_EQ(tokens.size(), nbResultingObservations + 1) << "Number of observations differs from expected ones";  // +1 to account for the header
     }
 
     WBSF::CWeatherGeneratorAPI m_WeatherGen;
@@ -55,6 +85,7 @@ namespace BioSIM_APITest
   TEST_F(BioSIM_ModelTest, Test01_ASCE_ETc_Daily)
   {
     ExecuteModel("ASCE-ETc(Daily).mdl");
+//    ExecuteModel("ASCE-ETc(Daily).mdl", true);
   }
 
   TEST_F(BioSIM_ModelTest, Test02_ASCE_ETcEx_Daily)

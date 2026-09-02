@@ -36,7 +36,7 @@ On Windows, make sure the BuildTools 2022 are installed. Those can be installed 
 
 On Windows:
 ```
-cmake --preset vs2022-ci
+cmake --preset vs2022
 ```
 On Linux - debug configuration:
 ```
